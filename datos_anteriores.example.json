@@ -1,0 +1,12 @@
+{
+  "Encargos": {
+    "filas": [
+      ["1", "0000000000", "APELLIDO APELLIDO NOMBRE NOMBRE", "UNIDAD EDUCATIVA EJEMPLO", "ENCARGO DESDE DD/MM/AAAA"]
+    ]
+  },
+  "Jubilación": {
+    "filas": [
+      ["1", "APELLIDO APELLIDO NOMBRE", "0000000000", "CARGO EJEMPLO", "0.00", "JUBILACIÓN DD-MM-AAAA"]
+    ]
+  }
+}

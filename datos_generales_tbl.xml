@@ -1,0 +1,1202 @@
+<w:tbl>
+      <w:tblPr>
+        <w:tblW w:w="8647" w:type="dxa"/>
+        <w:tblInd w:w="-5" w:type="dxa"/>
+        <w:tblCellMar>
+          <w:left w:w="70" w:type="dxa"/>
+          <w:right w:w="70" w:type="dxa"/>
+        </w:tblCellMar>
+        <w:tblLook w:val="04A0" w:firstRow="1" w:lastRow="0" w:firstColumn="1" w:lastColumn="0" w:noHBand="0" w:noVBand="1"/>
+      </w:tblPr>
+      <w:tblGrid>
+        <w:gridCol w:w="1086"/>
+        <w:gridCol w:w="1582"/>
+        <w:gridCol w:w="1208"/>
+        <w:gridCol w:w="3028"/>
+        <w:gridCol w:w="1757"/>
+      </w:tblGrid>
+      <w:tr w:rsidR="008B6090" w:rsidRPr="00241456" w14:paraId="57764C93" w14:textId="77777777" w:rsidTr="00847943">
+        <w:trPr>
+          <w:trHeight w:val="82"/>
+        </w:trPr>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:w="8647" w:type="dxa"/>
+            <w:gridSpan w:val="5"/>
+            <w:tcBorders>
+              <w:top w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+              <w:left w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+              <w:bottom w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+              <w:right w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+            </w:tcBorders>
+            <w:noWrap/>
+            <w:vAlign w:val="center"/>
+            <w:hideMark/>
+          </w:tcPr>
+          <w:p w14:paraId="5F0B8190" w14:textId="77777777" w:rsidR="008B6090" w:rsidRPr="00241456" w:rsidRDefault="008B6090" w:rsidP="00847943">
+            <w:pPr>
+              <w:jc w:val="center"/>
+              <w:rPr>
+                <w:rFonts w:asciiTheme="minorHAnsi" w:hAnsiTheme="minorHAnsi" w:cstheme="minorHAnsi"/>
+                <w:b/>
+                <w:bCs/>
+                <w:color w:val="366092"/>
+                <w:sz w:val="18"/>
+                <w:szCs w:val="18"/>
+              </w:rPr>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:asciiTheme="minorHAnsi" w:hAnsiTheme="minorHAnsi" w:cstheme="minorHAnsi"/>
+                <w:b/>
+                <w:bCs/>
+                <w:sz w:val="18"/>
+                <w:szCs w:val="18"/>
+              </w:rPr>
+              <w:t>DATOS GENERALES</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+      </w:tr>
+      <w:tr w:rsidR="008B6090" w:rsidRPr="00241456" w14:paraId="1029237C" w14:textId="77777777" w:rsidTr="00847943">
+        <w:trPr>
+          <w:trHeight w:val="77"/>
+        </w:trPr>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:w="1071" w:type="dxa"/>
+            <w:tcBorders>
+              <w:top w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+              <w:left w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+              <w:bottom w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+              <w:right w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+            </w:tcBorders>
+            <w:noWrap/>
+            <w:vAlign w:val="center"/>
+            <w:hideMark/>
+          </w:tcPr>
+          <w:p w14:paraId="70648661" w14:textId="77777777" w:rsidR="008B6090" w:rsidRPr="00241456" w:rsidRDefault="008B6090" w:rsidP="00847943">
+            <w:pPr>
+              <w:jc w:val="center"/>
+              <w:rPr>
+                <w:rFonts w:asciiTheme="minorHAnsi" w:hAnsiTheme="minorHAnsi" w:cstheme="minorHAnsi"/>
+                <w:b/>
+                <w:bCs/>
+                <w:sz w:val="18"/>
+                <w:szCs w:val="18"/>
+              </w:rPr>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:asciiTheme="minorHAnsi" w:hAnsiTheme="minorHAnsi" w:cstheme="minorHAnsi"/>
+                <w:b/>
+                <w:bCs/>
+                <w:sz w:val="18"/>
+                <w:szCs w:val="18"/>
+              </w:rPr>
+              <w:t>Fecha de Informe</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:w="1582" w:type="dxa"/>
+            <w:tcBorders>
+              <w:top w:val="nil"/>
+              <w:left w:val="nil"/>
+              <w:bottom w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+              <w:right w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+            </w:tcBorders>
+            <w:noWrap/>
+            <w:vAlign w:val="center"/>
+            <w:hideMark/>
+          </w:tcPr>
+          <w:p w14:paraId="5B84356B" w14:textId="77777777" w:rsidR="008B6090" w:rsidRPr="00241456" w:rsidRDefault="008B6090" w:rsidP="00847943">
+            <w:pPr>
+              <w:jc w:val="center"/>
+              <w:rPr>
+                <w:rFonts w:asciiTheme="minorHAnsi" w:hAnsiTheme="minorHAnsi" w:cstheme="minorHAnsi"/>
+                <w:sz w:val="18"/>
+                <w:szCs w:val="18"/>
+              </w:rPr>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:asciiTheme="minorHAnsi" w:hAnsiTheme="minorHAnsi" w:cstheme="minorHAnsi"/>
+                <w:sz w:val="18"/>
+                <w:szCs w:val="18"/>
+              </w:rPr>
+              <w:t>04-03-2026</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:w="1208" w:type="dxa"/>
+            <w:tcBorders>
+              <w:top w:val="nil"/>
+              <w:left w:val="nil"/>
+              <w:bottom w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+              <w:right w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+            </w:tcBorders>
+            <w:noWrap/>
+            <w:vAlign w:val="center"/>
+            <w:hideMark/>
+          </w:tcPr>
+          <w:p w14:paraId="7A021F36" w14:textId="77777777" w:rsidR="008B6090" w:rsidRPr="00241456" w:rsidRDefault="008B6090" w:rsidP="00847943">
+            <w:pPr>
+              <w:jc w:val="center"/>
+              <w:rPr>
+                <w:rFonts w:asciiTheme="minorHAnsi" w:hAnsiTheme="minorHAnsi" w:cstheme="minorHAnsi"/>
+                <w:sz w:val="18"/>
+                <w:szCs w:val="18"/>
+              </w:rPr>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:asciiTheme="minorHAnsi" w:hAnsiTheme="minorHAnsi" w:cstheme="minorHAnsi"/>
+                <w:sz w:val="18"/>
+                <w:szCs w:val="18"/>
+              </w:rPr>
+              <w:t>No. De Informe</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:w="4784" w:type="dxa"/>
+            <w:gridSpan w:val="2"/>
+            <w:tcBorders>
+              <w:top w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+              <w:left w:val="nil"/>
+              <w:bottom w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+              <w:right w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+            </w:tcBorders>
+            <w:noWrap/>
+            <w:vAlign w:val="center"/>
+            <w:hideMark/>
+          </w:tcPr>
+          <w:p w14:paraId="3E74568D" w14:textId="77777777" w:rsidR="008B6090" w:rsidRPr="00241456" w:rsidRDefault="008B6090" w:rsidP="00847943">
+            <w:pPr>
+              <w:jc w:val="center"/>
+              <w:rPr>
+                <w:rFonts w:asciiTheme="minorHAnsi" w:hAnsiTheme="minorHAnsi" w:cstheme="minorHAnsi"/>
+                <w:sz w:val="18"/>
+                <w:szCs w:val="18"/>
+              </w:rPr>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:asciiTheme="minorHAnsi" w:hAnsiTheme="minorHAnsi" w:cstheme="minorHAnsi"/>
+                <w:sz w:val="18"/>
+                <w:szCs w:val="18"/>
+              </w:rPr>
+              <w:t>DDLC-TH-2026-085</w:t>
+            </w:r>
+            
+            
+            
+          </w:p>
+        </w:tc>
+      </w:tr>
+      <w:tr w:rsidR="008B6090" w:rsidRPr="00241456" w14:paraId="7F4243D5" w14:textId="77777777" w:rsidTr="00847943">
+        <w:trPr>
+          <w:trHeight w:val="77"/>
+        </w:trPr>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:w="1071" w:type="dxa"/>
+            <w:vMerge w:val="restart"/>
+            <w:tcBorders>
+              <w:top w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+              <w:left w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+              <w:bottom w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+              <w:right w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+            </w:tcBorders>
+            <w:vAlign w:val="center"/>
+            <w:hideMark/>
+          </w:tcPr>
+          <w:p w14:paraId="154311BC" w14:textId="77777777" w:rsidR="008B6090" w:rsidRPr="00241456" w:rsidRDefault="008B6090" w:rsidP="00847943">
+            <w:pPr>
+              <w:jc w:val="center"/>
+              <w:rPr>
+                <w:rFonts w:asciiTheme="minorHAnsi" w:hAnsiTheme="minorHAnsi" w:cstheme="minorHAnsi"/>
+                <w:b/>
+                <w:bCs/>
+                <w:sz w:val="18"/>
+                <w:szCs w:val="18"/>
+              </w:rPr>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:asciiTheme="minorHAnsi" w:hAnsiTheme="minorHAnsi" w:cstheme="minorHAnsi"/>
+                <w:b/>
+                <w:bCs/>
+                <w:sz w:val="18"/>
+                <w:szCs w:val="18"/>
+              </w:rPr>
+              <w:t>Funcionario Responsable de Informe</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:w="1582" w:type="dxa"/>
+            <w:vMerge w:val="restart"/>
+            <w:tcBorders>
+              <w:top w:val="nil"/>
+              <w:left w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+              <w:bottom w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+              <w:right w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+            </w:tcBorders>
+            <w:noWrap/>
+            <w:vAlign w:val="center"/>
+            <w:hideMark/>
+          </w:tcPr>
+          <w:p w14:paraId="490C09ED" w14:textId="77777777" w:rsidR="008B6090" w:rsidRPr="00241456" w:rsidRDefault="008B6090" w:rsidP="00847943">
+            <w:pPr>
+              <w:jc w:val="center"/>
+              <w:rPr>
+                <w:rFonts w:asciiTheme="minorHAnsi" w:hAnsiTheme="minorHAnsi" w:cstheme="minorHAnsi"/>
+                <w:sz w:val="18"/>
+                <w:szCs w:val="18"/>
+              </w:rPr>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:asciiTheme="minorHAnsi" w:hAnsiTheme="minorHAnsi" w:cstheme="minorHAnsi"/>
+                <w:sz w:val="18"/>
+                <w:szCs w:val="18"/>
+              </w:rPr>
+              <w:t>Nombre</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:w="4236" w:type="dxa"/>
+            <w:gridSpan w:val="2"/>
+            <w:tcBorders>
+              <w:top w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+              <w:left w:val="nil"/>
+              <w:bottom w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+              <w:right w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+            </w:tcBorders>
+            <w:vAlign w:val="center"/>
+            <w:hideMark/>
+          </w:tcPr>
+          <w:p w14:paraId="6DE59E83" w14:textId="77777777" w:rsidR="008B6090" w:rsidRPr="00241456" w:rsidRDefault="008B6090" w:rsidP="00847943">
+            <w:pPr>
+              <w:jc w:val="center"/>
+              <w:rPr>
+                <w:rFonts w:asciiTheme="minorHAnsi" w:hAnsiTheme="minorHAnsi" w:cstheme="minorHAnsi"/>
+                <w:sz w:val="18"/>
+                <w:szCs w:val="18"/>
+              </w:rPr>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:asciiTheme="minorHAnsi" w:hAnsiTheme="minorHAnsi" w:cstheme="minorHAnsi"/>
+                <w:sz w:val="18"/>
+                <w:szCs w:val="18"/>
+              </w:rPr>
+              <w:t>Contacto</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:w="1756" w:type="dxa"/>
+            <w:vMerge w:val="restart"/>
+            <w:tcBorders>
+              <w:top w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+              <w:left w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+              <w:bottom w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+              <w:right w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+            </w:tcBorders>
+            <w:noWrap/>
+            <w:vAlign w:val="center"/>
+            <w:hideMark/>
+          </w:tcPr>
+          <w:p w14:paraId="1CFF0A7E" w14:textId="77777777" w:rsidR="008B6090" w:rsidRPr="00241456" w:rsidRDefault="008B6090" w:rsidP="00847943">
+            <w:pPr>
+              <w:jc w:val="center"/>
+              <w:rPr>
+                <w:rFonts w:asciiTheme="minorHAnsi" w:hAnsiTheme="minorHAnsi" w:cstheme="minorHAnsi"/>
+                <w:sz w:val="18"/>
+                <w:szCs w:val="18"/>
+              </w:rPr>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:asciiTheme="minorHAnsi" w:hAnsiTheme="minorHAnsi" w:cstheme="minorHAnsi"/>
+                <w:sz w:val="18"/>
+                <w:szCs w:val="18"/>
+              </w:rPr>
+              <w:t>Cargo</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+      </w:tr>
+      <w:tr w:rsidR="008B6090" w:rsidRPr="00241456" w14:paraId="49DB09F7" w14:textId="77777777" w:rsidTr="00847943">
+        <w:trPr>
+          <w:trHeight w:val="77"/>
+        </w:trPr>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:w="1071" w:type="dxa"/>
+            <w:vMerge/>
+            <w:tcBorders>
+              <w:top w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+              <w:left w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+              <w:bottom w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+              <w:right w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+            </w:tcBorders>
+            <w:vAlign w:val="center"/>
+            <w:hideMark/>
+          </w:tcPr>
+          <w:p w14:paraId="2C314E32" w14:textId="77777777" w:rsidR="008B6090" w:rsidRPr="00241456" w:rsidRDefault="008B6090" w:rsidP="00847943">
+            <w:pPr>
+              <w:jc w:val="center"/>
+              <w:rPr>
+                <w:rFonts w:asciiTheme="minorHAnsi" w:hAnsiTheme="minorHAnsi" w:cstheme="minorHAnsi"/>
+                <w:b/>
+                <w:bCs/>
+                <w:sz w:val="18"/>
+                <w:szCs w:val="18"/>
+              </w:rPr>
+            </w:pPr>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:w="1582" w:type="dxa"/>
+            <w:vMerge/>
+            <w:tcBorders>
+              <w:top w:val="nil"/>
+              <w:left w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+              <w:bottom w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+              <w:right w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+            </w:tcBorders>
+            <w:vAlign w:val="center"/>
+            <w:hideMark/>
+          </w:tcPr>
+          <w:p w14:paraId="7A91ABE7" w14:textId="77777777" w:rsidR="008B6090" w:rsidRPr="00241456" w:rsidRDefault="008B6090" w:rsidP="00847943">
+            <w:pPr>
+              <w:jc w:val="center"/>
+              <w:rPr>
+                <w:rFonts w:asciiTheme="minorHAnsi" w:hAnsiTheme="minorHAnsi" w:cstheme="minorHAnsi"/>
+                <w:sz w:val="18"/>
+                <w:szCs w:val="18"/>
+              </w:rPr>
+            </w:pPr>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:w="1208" w:type="dxa"/>
+            <w:tcBorders>
+              <w:top w:val="nil"/>
+              <w:left w:val="nil"/>
+              <w:bottom w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+              <w:right w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+            </w:tcBorders>
+            <w:noWrap/>
+            <w:vAlign w:val="center"/>
+            <w:hideMark/>
+          </w:tcPr>
+          <w:p w14:paraId="417CB1A8" w14:textId="77777777" w:rsidR="008B6090" w:rsidRPr="00241456" w:rsidRDefault="008B6090" w:rsidP="00847943">
+            <w:pPr>
+              <w:jc w:val="center"/>
+              <w:rPr>
+                <w:rFonts w:asciiTheme="minorHAnsi" w:hAnsiTheme="minorHAnsi" w:cstheme="minorHAnsi"/>
+                <w:sz w:val="18"/>
+                <w:szCs w:val="18"/>
+              </w:rPr>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:asciiTheme="minorHAnsi" w:hAnsiTheme="minorHAnsi" w:cstheme="minorHAnsi"/>
+                <w:sz w:val="18"/>
+                <w:szCs w:val="18"/>
+              </w:rPr>
+              <w:t>Extensión Telefónica</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:w="3027" w:type="dxa"/>
+            <w:tcBorders>
+              <w:top w:val="nil"/>
+              <w:left w:val="nil"/>
+              <w:bottom w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+              <w:right w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+            </w:tcBorders>
+            <w:noWrap/>
+            <w:vAlign w:val="center"/>
+            <w:hideMark/>
+          </w:tcPr>
+          <w:p w14:paraId="67B853DE" w14:textId="77777777" w:rsidR="008B6090" w:rsidRPr="00241456" w:rsidRDefault="008B6090" w:rsidP="00847943">
+            <w:pPr>
+              <w:jc w:val="center"/>
+              <w:rPr>
+                <w:rFonts w:asciiTheme="minorHAnsi" w:hAnsiTheme="minorHAnsi" w:cstheme="minorHAnsi"/>
+                <w:sz w:val="18"/>
+                <w:szCs w:val="18"/>
+              </w:rPr>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:asciiTheme="minorHAnsi" w:hAnsiTheme="minorHAnsi" w:cstheme="minorHAnsi"/>
+                <w:sz w:val="18"/>
+                <w:szCs w:val="18"/>
+              </w:rPr>
+              <w:t>Correo Electrónico</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:w="1756" w:type="dxa"/>
+            <w:vMerge/>
+            <w:tcBorders>
+              <w:top w:val="nil"/>
+              <w:left w:val="nil"/>
+              <w:bottom w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+              <w:right w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+            </w:tcBorders>
+            <w:vAlign w:val="center"/>
+            <w:hideMark/>
+          </w:tcPr>
+          <w:p w14:paraId="257663AF" w14:textId="77777777" w:rsidR="008B6090" w:rsidRPr="00241456" w:rsidRDefault="008B6090" w:rsidP="00847943">
+            <w:pPr>
+              <w:jc w:val="center"/>
+              <w:rPr>
+                <w:rFonts w:asciiTheme="minorHAnsi" w:hAnsiTheme="minorHAnsi" w:cstheme="minorHAnsi"/>
+                <w:sz w:val="18"/>
+                <w:szCs w:val="18"/>
+              </w:rPr>
+            </w:pPr>
+          </w:p>
+        </w:tc>
+      </w:tr>
+      <w:tr w:rsidR="008B6090" w:rsidRPr="00241456" w14:paraId="5C8EFBDF" w14:textId="77777777" w:rsidTr="00847943">
+        <w:trPr>
+          <w:trHeight w:val="77"/>
+        </w:trPr>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:w="1071" w:type="dxa"/>
+            <w:vMerge/>
+            <w:tcBorders>
+              <w:top w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+              <w:left w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+              <w:bottom w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+              <w:right w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+            </w:tcBorders>
+            <w:vAlign w:val="center"/>
+            <w:hideMark/>
+          </w:tcPr>
+          <w:p w14:paraId="731A16F4" w14:textId="77777777" w:rsidR="008B6090" w:rsidRPr="00241456" w:rsidRDefault="008B6090" w:rsidP="00847943">
+            <w:pPr>
+              <w:jc w:val="center"/>
+              <w:rPr>
+                <w:rFonts w:asciiTheme="minorHAnsi" w:hAnsiTheme="minorHAnsi" w:cstheme="minorHAnsi"/>
+                <w:b/>
+                <w:bCs/>
+                <w:sz w:val="18"/>
+                <w:szCs w:val="18"/>
+              </w:rPr>
+            </w:pPr>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:w="1582" w:type="dxa"/>
+            <w:tcBorders>
+              <w:top w:val="nil"/>
+              <w:left w:val="nil"/>
+              <w:bottom w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+              <w:right w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+            </w:tcBorders>
+            <w:noWrap/>
+            <w:vAlign w:val="center"/>
+            <w:hideMark/>
+          </w:tcPr>
+          <w:p w14:paraId="4AEF80C2" w14:textId="77777777" w:rsidR="008B6090" w:rsidRPr="00241456" w:rsidRDefault="008B6090" w:rsidP="00847943">
+            <w:pPr>
+              <w:jc w:val="center"/>
+              <w:rPr>
+                <w:rFonts w:asciiTheme="minorHAnsi" w:hAnsiTheme="minorHAnsi" w:cstheme="minorHAnsi"/>
+                <w:sz w:val="18"/>
+                <w:szCs w:val="18"/>
+              </w:rPr>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:asciiTheme="minorHAnsi" w:hAnsiTheme="minorHAnsi" w:cstheme="minorHAnsi"/>
+                <w:sz w:val="18"/>
+                <w:szCs w:val="18"/>
+              </w:rPr>
+              <w:t xml:space="preserve">Ing. Diana Carolina Sánchez Osorio </w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:w="1208" w:type="dxa"/>
+            <w:tcBorders>
+              <w:top w:val="nil"/>
+              <w:left w:val="nil"/>
+              <w:bottom w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+              <w:right w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+            </w:tcBorders>
+            <w:noWrap/>
+            <w:vAlign w:val="center"/>
+            <w:hideMark/>
+          </w:tcPr>
+          <w:p w14:paraId="612B5E87" w14:textId="77777777" w:rsidR="008B6090" w:rsidRPr="00241456" w:rsidRDefault="008B6090" w:rsidP="00847943">
+            <w:pPr>
+              <w:jc w:val="center"/>
+              <w:rPr>
+                <w:rFonts w:asciiTheme="minorHAnsi" w:hAnsiTheme="minorHAnsi" w:cstheme="minorHAnsi"/>
+                <w:sz w:val="18"/>
+                <w:szCs w:val="18"/>
+              </w:rPr>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:asciiTheme="minorHAnsi" w:hAnsiTheme="minorHAnsi" w:cstheme="minorHAnsi"/>
+                <w:sz w:val="18"/>
+                <w:szCs w:val="18"/>
+              </w:rPr>
+              <w:t>3819</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:w="3027" w:type="dxa"/>
+            <w:tcBorders>
+              <w:top w:val="nil"/>
+              <w:left w:val="nil"/>
+              <w:bottom w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+              <w:right w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+            </w:tcBorders>
+            <w:noWrap/>
+            <w:vAlign w:val="center"/>
+            <w:hideMark/>
+          </w:tcPr>
+          <w:p w14:paraId="57D648E4" w14:textId="77777777" w:rsidR="008B6090" w:rsidRPr="00241456" w:rsidRDefault="008B6090" w:rsidP="00847943">
+            <w:pPr>
+              <w:jc w:val="center"/>
+              <w:rPr>
+                <w:rFonts w:asciiTheme="minorHAnsi" w:hAnsiTheme="minorHAnsi" w:cstheme="minorHAnsi"/>
+                <w:sz w:val="18"/>
+                <w:szCs w:val="18"/>
+              </w:rPr>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:asciiTheme="minorHAnsi" w:hAnsiTheme="minorHAnsi" w:cstheme="minorHAnsi"/>
+                <w:sz w:val="18"/>
+                <w:szCs w:val="18"/>
+              </w:rPr>
+              <w:t>carolina.sanchez@educacion.gob.ec</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:w="1756" w:type="dxa"/>
+            <w:tcBorders>
+              <w:top w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+              <w:left w:val="nil"/>
+              <w:bottom w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+              <w:right w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+            </w:tcBorders>
+            <w:noWrap/>
+            <w:vAlign w:val="center"/>
+            <w:hideMark/>
+          </w:tcPr>
+          <w:p w14:paraId="52B74997" w14:textId="77777777" w:rsidR="008B6090" w:rsidRPr="00241456" w:rsidRDefault="008B6090" w:rsidP="00847943">
+            <w:pPr>
+              <w:jc w:val="center"/>
+              <w:rPr>
+                <w:rFonts w:asciiTheme="minorHAnsi" w:hAnsiTheme="minorHAnsi" w:cstheme="minorHAnsi"/>
+                <w:sz w:val="18"/>
+                <w:szCs w:val="18"/>
+              </w:rPr>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:asciiTheme="minorHAnsi" w:hAnsiTheme="minorHAnsi" w:cstheme="minorHAnsi"/>
+                <w:sz w:val="18"/>
+                <w:szCs w:val="18"/>
+              </w:rPr>
+              <w:t xml:space="preserve">JEFE DISTRITAL DE TALENTO HUMANO  </w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+      </w:tr>
+      <w:tr w:rsidR="008B6090" w:rsidRPr="00241456" w14:paraId="7EAEE458" w14:textId="77777777" w:rsidTr="00847943">
+        <w:trPr>
+          <w:trHeight w:val="77"/>
+        </w:trPr>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:w="1071" w:type="dxa"/>
+            <w:vMerge w:val="restart"/>
+            <w:tcBorders>
+              <w:top w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+              <w:left w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+              <w:bottom w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+              <w:right w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+            </w:tcBorders>
+            <w:vAlign w:val="center"/>
+            <w:hideMark/>
+          </w:tcPr>
+          <w:p w14:paraId="746187EE" w14:textId="77777777" w:rsidR="008B6090" w:rsidRPr="00241456" w:rsidRDefault="008B6090" w:rsidP="00847943">
+            <w:pPr>
+              <w:jc w:val="center"/>
+              <w:rPr>
+                <w:rFonts w:asciiTheme="minorHAnsi" w:hAnsiTheme="minorHAnsi" w:cstheme="minorHAnsi"/>
+                <w:b/>
+                <w:bCs/>
+                <w:sz w:val="18"/>
+                <w:szCs w:val="18"/>
+              </w:rPr>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:asciiTheme="minorHAnsi" w:hAnsiTheme="minorHAnsi" w:cstheme="minorHAnsi"/>
+                <w:b/>
+                <w:bCs/>
+                <w:sz w:val="18"/>
+                <w:szCs w:val="18"/>
+              </w:rPr>
+              <w:t>Informe dirigido a:</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:w="1582" w:type="dxa"/>
+            <w:vMerge w:val="restart"/>
+            <w:tcBorders>
+              <w:top w:val="nil"/>
+              <w:left w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+              <w:bottom w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+              <w:right w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+            </w:tcBorders>
+            <w:noWrap/>
+            <w:vAlign w:val="center"/>
+            <w:hideMark/>
+          </w:tcPr>
+          <w:p w14:paraId="5CA8A135" w14:textId="77777777" w:rsidR="008B6090" w:rsidRPr="00241456" w:rsidRDefault="008B6090" w:rsidP="00847943">
+            <w:pPr>
+              <w:jc w:val="center"/>
+              <w:rPr>
+                <w:rFonts w:asciiTheme="minorHAnsi" w:hAnsiTheme="minorHAnsi" w:cstheme="minorHAnsi"/>
+                <w:sz w:val="18"/>
+                <w:szCs w:val="18"/>
+              </w:rPr>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:asciiTheme="minorHAnsi" w:hAnsiTheme="minorHAnsi" w:cstheme="minorHAnsi"/>
+                <w:sz w:val="18"/>
+                <w:szCs w:val="18"/>
+              </w:rPr>
+              <w:t>Nombre</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:w="4236" w:type="dxa"/>
+            <w:gridSpan w:val="2"/>
+            <w:tcBorders>
+              <w:top w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+              <w:left w:val="nil"/>
+              <w:bottom w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+              <w:right w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+            </w:tcBorders>
+            <w:vAlign w:val="center"/>
+            <w:hideMark/>
+          </w:tcPr>
+          <w:p w14:paraId="4C3D4FE3" w14:textId="77777777" w:rsidR="008B6090" w:rsidRPr="00241456" w:rsidRDefault="008B6090" w:rsidP="00847943">
+            <w:pPr>
+              <w:jc w:val="center"/>
+              <w:rPr>
+                <w:rFonts w:asciiTheme="minorHAnsi" w:hAnsiTheme="minorHAnsi" w:cstheme="minorHAnsi"/>
+                <w:sz w:val="18"/>
+                <w:szCs w:val="18"/>
+              </w:rPr>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:asciiTheme="minorHAnsi" w:hAnsiTheme="minorHAnsi" w:cstheme="minorHAnsi"/>
+                <w:sz w:val="18"/>
+                <w:szCs w:val="18"/>
+              </w:rPr>
+              <w:t>Contacto</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:w="1756" w:type="dxa"/>
+            <w:vMerge w:val="restart"/>
+            <w:tcBorders>
+              <w:top w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+              <w:left w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+              <w:bottom w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+              <w:right w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+            </w:tcBorders>
+            <w:noWrap/>
+            <w:vAlign w:val="center"/>
+            <w:hideMark/>
+          </w:tcPr>
+          <w:p w14:paraId="672E84F0" w14:textId="77777777" w:rsidR="008B6090" w:rsidRPr="00241456" w:rsidRDefault="008B6090" w:rsidP="00847943">
+            <w:pPr>
+              <w:jc w:val="center"/>
+              <w:rPr>
+                <w:rFonts w:asciiTheme="minorHAnsi" w:hAnsiTheme="minorHAnsi" w:cstheme="minorHAnsi"/>
+                <w:sz w:val="18"/>
+                <w:szCs w:val="18"/>
+              </w:rPr>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:asciiTheme="minorHAnsi" w:hAnsiTheme="minorHAnsi" w:cstheme="minorHAnsi"/>
+                <w:sz w:val="18"/>
+                <w:szCs w:val="18"/>
+              </w:rPr>
+              <w:t>Cargo</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+      </w:tr>
+      <w:tr w:rsidR="008B6090" w:rsidRPr="00241456" w14:paraId="7381966F" w14:textId="77777777" w:rsidTr="00847943">
+        <w:trPr>
+          <w:trHeight w:val="77"/>
+        </w:trPr>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:w="1071" w:type="dxa"/>
+            <w:vMerge/>
+            <w:tcBorders>
+              <w:top w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+              <w:left w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+              <w:bottom w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+              <w:right w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+            </w:tcBorders>
+            <w:vAlign w:val="center"/>
+            <w:hideMark/>
+          </w:tcPr>
+          <w:p w14:paraId="167AF929" w14:textId="77777777" w:rsidR="008B6090" w:rsidRPr="00241456" w:rsidRDefault="008B6090" w:rsidP="00847943">
+            <w:pPr>
+              <w:jc w:val="center"/>
+              <w:rPr>
+                <w:rFonts w:asciiTheme="minorHAnsi" w:hAnsiTheme="minorHAnsi" w:cstheme="minorHAnsi"/>
+                <w:b/>
+                <w:bCs/>
+                <w:sz w:val="18"/>
+                <w:szCs w:val="18"/>
+              </w:rPr>
+            </w:pPr>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:w="1582" w:type="dxa"/>
+            <w:vMerge/>
+            <w:tcBorders>
+              <w:top w:val="nil"/>
+              <w:left w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+              <w:bottom w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+              <w:right w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+            </w:tcBorders>
+            <w:vAlign w:val="center"/>
+            <w:hideMark/>
+          </w:tcPr>
+          <w:p w14:paraId="06B550AC" w14:textId="77777777" w:rsidR="008B6090" w:rsidRPr="00241456" w:rsidRDefault="008B6090" w:rsidP="00847943">
+            <w:pPr>
+              <w:jc w:val="center"/>
+              <w:rPr>
+                <w:rFonts w:asciiTheme="minorHAnsi" w:hAnsiTheme="minorHAnsi" w:cstheme="minorHAnsi"/>
+                <w:sz w:val="18"/>
+                <w:szCs w:val="18"/>
+              </w:rPr>
+            </w:pPr>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:w="1208" w:type="dxa"/>
+            <w:tcBorders>
+              <w:top w:val="nil"/>
+              <w:left w:val="nil"/>
+              <w:bottom w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+              <w:right w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+            </w:tcBorders>
+            <w:noWrap/>
+            <w:vAlign w:val="center"/>
+            <w:hideMark/>
+          </w:tcPr>
+          <w:p w14:paraId="74E4817E" w14:textId="77777777" w:rsidR="008B6090" w:rsidRPr="00241456" w:rsidRDefault="008B6090" w:rsidP="00847943">
+            <w:pPr>
+              <w:jc w:val="center"/>
+              <w:rPr>
+                <w:rFonts w:asciiTheme="minorHAnsi" w:hAnsiTheme="minorHAnsi" w:cstheme="minorHAnsi"/>
+                <w:sz w:val="18"/>
+                <w:szCs w:val="18"/>
+              </w:rPr>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:asciiTheme="minorHAnsi" w:hAnsiTheme="minorHAnsi" w:cstheme="minorHAnsi"/>
+                <w:sz w:val="18"/>
+                <w:szCs w:val="18"/>
+              </w:rPr>
+              <w:t>Extensión Telefónica</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:w="3027" w:type="dxa"/>
+            <w:tcBorders>
+              <w:top w:val="nil"/>
+              <w:left w:val="nil"/>
+              <w:bottom w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+              <w:right w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+            </w:tcBorders>
+            <w:noWrap/>
+            <w:vAlign w:val="center"/>
+            <w:hideMark/>
+          </w:tcPr>
+          <w:p w14:paraId="7D48A2A6" w14:textId="77777777" w:rsidR="008B6090" w:rsidRPr="00241456" w:rsidRDefault="008B6090" w:rsidP="00847943">
+            <w:pPr>
+              <w:jc w:val="center"/>
+              <w:rPr>
+                <w:rFonts w:asciiTheme="minorHAnsi" w:hAnsiTheme="minorHAnsi" w:cstheme="minorHAnsi"/>
+                <w:sz w:val="18"/>
+                <w:szCs w:val="18"/>
+              </w:rPr>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:asciiTheme="minorHAnsi" w:hAnsiTheme="minorHAnsi" w:cstheme="minorHAnsi"/>
+                <w:sz w:val="18"/>
+                <w:szCs w:val="18"/>
+              </w:rPr>
+              <w:t>Correo Electrónico</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:w="1756" w:type="dxa"/>
+            <w:vMerge/>
+            <w:tcBorders>
+              <w:top w:val="nil"/>
+              <w:left w:val="nil"/>
+              <w:bottom w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+              <w:right w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+            </w:tcBorders>
+            <w:vAlign w:val="center"/>
+            <w:hideMark/>
+          </w:tcPr>
+          <w:p w14:paraId="6694BF73" w14:textId="77777777" w:rsidR="008B6090" w:rsidRPr="00241456" w:rsidRDefault="008B6090" w:rsidP="00847943">
+            <w:pPr>
+              <w:jc w:val="center"/>
+              <w:rPr>
+                <w:rFonts w:asciiTheme="minorHAnsi" w:hAnsiTheme="minorHAnsi" w:cstheme="minorHAnsi"/>
+                <w:sz w:val="18"/>
+                <w:szCs w:val="18"/>
+              </w:rPr>
+            </w:pPr>
+          </w:p>
+        </w:tc>
+      </w:tr>
+      <w:tr w:rsidR="008B6090" w:rsidRPr="00241456" w14:paraId="11D0ED27" w14:textId="77777777" w:rsidTr="00847943">
+        <w:trPr>
+          <w:trHeight w:val="77"/>
+        </w:trPr>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:w="1071" w:type="dxa"/>
+            <w:vMerge/>
+            <w:tcBorders>
+              <w:top w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+              <w:left w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+              <w:bottom w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+              <w:right w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+            </w:tcBorders>
+            <w:vAlign w:val="center"/>
+            <w:hideMark/>
+          </w:tcPr>
+          <w:p w14:paraId="4D752399" w14:textId="77777777" w:rsidR="008B6090" w:rsidRPr="00241456" w:rsidRDefault="008B6090" w:rsidP="00847943">
+            <w:pPr>
+              <w:jc w:val="center"/>
+              <w:rPr>
+                <w:rFonts w:asciiTheme="minorHAnsi" w:hAnsiTheme="minorHAnsi" w:cstheme="minorHAnsi"/>
+                <w:b/>
+                <w:bCs/>
+                <w:sz w:val="18"/>
+                <w:szCs w:val="18"/>
+              </w:rPr>
+            </w:pPr>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:w="1582" w:type="dxa"/>
+            <w:tcBorders>
+              <w:top w:val="nil"/>
+              <w:left w:val="nil"/>
+              <w:bottom w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+              <w:right w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+            </w:tcBorders>
+            <w:noWrap/>
+            <w:vAlign w:val="center"/>
+            <w:hideMark/>
+          </w:tcPr>
+          <w:p w14:paraId="21E3876A" w14:textId="77777777" w:rsidR="008B6090" w:rsidRPr="00241456" w:rsidRDefault="008B6090" w:rsidP="00847943">
+            <w:pPr>
+              <w:jc w:val="center"/>
+              <w:rPr>
+                <w:rFonts w:asciiTheme="minorHAnsi" w:hAnsiTheme="minorHAnsi" w:cstheme="minorHAnsi"/>
+                <w:sz w:val="18"/>
+                <w:szCs w:val="18"/>
+              </w:rPr>
+            </w:pPr>
+            
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:asciiTheme="minorHAnsi" w:hAnsiTheme="minorHAnsi" w:cstheme="minorHAnsi"/>
+                <w:sz w:val="18"/>
+                <w:szCs w:val="18"/>
+              </w:rPr>
+              <w:t xml:space="preserve">MSc. Manuel Espinoza Avilés </w:t>
+            </w:r>
+            
+            
+            
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:w="1208" w:type="dxa"/>
+            <w:tcBorders>
+              <w:top w:val="nil"/>
+              <w:left w:val="nil"/>
+              <w:bottom w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+              <w:right w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+            </w:tcBorders>
+            <w:noWrap/>
+            <w:vAlign w:val="center"/>
+            <w:hideMark/>
+          </w:tcPr>
+          <w:p w14:paraId="30CEB763" w14:textId="77777777" w:rsidR="008B6090" w:rsidRPr="00241456" w:rsidRDefault="008B6090" w:rsidP="00847943">
+            <w:pPr>
+              <w:jc w:val="center"/>
+              <w:rPr>
+                <w:rFonts w:asciiTheme="minorHAnsi" w:hAnsiTheme="minorHAnsi" w:cstheme="minorHAnsi"/>
+                <w:sz w:val="18"/>
+                <w:szCs w:val="18"/>
+              </w:rPr>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:asciiTheme="minorHAnsi" w:hAnsiTheme="minorHAnsi" w:cstheme="minorHAnsi"/>
+                <w:sz w:val="18"/>
+                <w:szCs w:val="18"/>
+              </w:rPr>
+              <w:t>3802</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:w="3027" w:type="dxa"/>
+            <w:tcBorders>
+              <w:top w:val="nil"/>
+              <w:left w:val="nil"/>
+              <w:bottom w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+              <w:right w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+            </w:tcBorders>
+            <w:noWrap/>
+            <w:vAlign w:val="center"/>
+            <w:hideMark/>
+          </w:tcPr>
+          <w:p w14:paraId="055E2E8E" w14:textId="77777777" w:rsidR="008B6090" w:rsidRPr="00241456" w:rsidRDefault="008B6090" w:rsidP="00847943">
+            <w:pPr>
+              <w:jc w:val="center"/>
+              <w:rPr>
+                <w:rFonts w:asciiTheme="minorHAnsi" w:hAnsiTheme="minorHAnsi" w:cstheme="minorHAnsi"/>
+                <w:sz w:val="18"/>
+                <w:szCs w:val="18"/>
+              </w:rPr>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:asciiTheme="minorHAnsi" w:hAnsiTheme="minorHAnsi" w:cstheme="minorHAnsi"/>
+                <w:sz w:val="18"/>
+                <w:szCs w:val="18"/>
+              </w:rPr>
+              <w:t>manuel.espinozaa@educacion.gob.ec</w:t>
+            </w:r>
+            
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:w="1756" w:type="dxa"/>
+            <w:tcBorders>
+              <w:top w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+              <w:left w:val="nil"/>
+              <w:bottom w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+              <w:right w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+            </w:tcBorders>
+            <w:noWrap/>
+            <w:vAlign w:val="center"/>
+            <w:hideMark/>
+          </w:tcPr>
+          <w:p w14:paraId="092CAC0C" w14:textId="77777777" w:rsidR="008B6090" w:rsidRPr="00241456" w:rsidRDefault="008B6090" w:rsidP="00847943">
+            <w:pPr>
+              <w:jc w:val="center"/>
+              <w:rPr>
+                <w:rFonts w:asciiTheme="minorHAnsi" w:hAnsiTheme="minorHAnsi" w:cstheme="minorHAnsi"/>
+                <w:sz w:val="18"/>
+                <w:szCs w:val="18"/>
+              </w:rPr>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:asciiTheme="minorHAnsi" w:hAnsiTheme="minorHAnsi" w:cstheme="minorHAnsi"/>
+                <w:sz w:val="18"/>
+                <w:szCs w:val="18"/>
+              </w:rPr>
+              <w:t>DIRECTOR DISTRITAL 17D08 PARROQUIAS RURALES CONOCOTO LA MERCED</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+      </w:tr>
+      <w:tr w:rsidR="008B6090" w:rsidRPr="00241456" w14:paraId="67EF0875" w14:textId="77777777" w:rsidTr="00847943">
+        <w:trPr>
+          <w:trHeight w:val="47"/>
+        </w:trPr>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:w="1071" w:type="dxa"/>
+            <w:tcBorders>
+              <w:top w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+              <w:left w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+              <w:bottom w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+              <w:right w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+            </w:tcBorders>
+            <w:vAlign w:val="center"/>
+          </w:tcPr>
+          <w:p w14:paraId="1726ABC4" w14:textId="77777777" w:rsidR="008B6090" w:rsidRPr="00241456" w:rsidRDefault="008B6090" w:rsidP="00847943">
+            <w:pPr>
+              <w:jc w:val="center"/>
+              <w:rPr>
+                <w:rFonts w:asciiTheme="minorHAnsi" w:hAnsiTheme="minorHAnsi" w:cstheme="minorHAnsi"/>
+                <w:b/>
+                <w:bCs/>
+                <w:sz w:val="18"/>
+                <w:szCs w:val="18"/>
+              </w:rPr>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:asciiTheme="minorHAnsi" w:hAnsiTheme="minorHAnsi" w:cstheme="minorHAnsi"/>
+                <w:b/>
+                <w:bCs/>
+                <w:sz w:val="18"/>
+                <w:szCs w:val="18"/>
+              </w:rPr>
+              <w:t xml:space="preserve">TEMA: </w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:w="7575" w:type="dxa"/>
+            <w:gridSpan w:val="4"/>
+            <w:tcBorders>
+              <w:top w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+              <w:left w:val="nil"/>
+              <w:bottom w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+              <w:right w:val="single" w:sz="4" w:space="0" w:color="auto"/>
+            </w:tcBorders>
+            <w:noWrap/>
+            <w:vAlign w:val="center"/>
+          </w:tcPr>
+          <w:p w14:paraId="41983354" w14:textId="77777777" w:rsidR="008B6090" w:rsidRPr="00241456" w:rsidRDefault="008B6090" w:rsidP="00847943">
+            <w:pPr>
+              <w:pStyle w:val="TableParagraph"/>
+              <w:spacing w:line="181" w:lineRule="exact"/>
+              <w:ind w:left="435" w:right="431"/>
+              <w:jc w:val="center"/>
+              <w:rPr>
+                <w:rFonts w:asciiTheme="minorHAnsi" w:hAnsiTheme="minorHAnsi" w:cstheme="minorHAnsi"/>
+                <w:b/>
+                <w:sz w:val="18"/>
+                <w:szCs w:val="18"/>
+              </w:rPr>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:asciiTheme="minorHAnsi" w:hAnsiTheme="minorHAnsi" w:cstheme="minorHAnsi"/>
+                <w:b/>
+                <w:sz w:val="18"/>
+                <w:szCs w:val="18"/>
+              </w:rPr>
+              <w:t>INFORME TÉCNICO PARA EL PAGO DE FONDOS DE RESERVA DEL</w:t>
+            </w:r>
+          </w:p>
+          <w:p w14:paraId="06F5EF0B" w14:textId="77777777" w:rsidR="008B6090" w:rsidRPr="00241456" w:rsidRDefault="008B6090" w:rsidP="00847943">
+            <w:pPr>
+              <w:pStyle w:val="TableParagraph"/>
+              <w:spacing w:line="181" w:lineRule="exact"/>
+              <w:ind w:left="435" w:right="431"/>
+              <w:jc w:val="center"/>
+              <w:rPr>
+                <w:rFonts w:asciiTheme="minorHAnsi" w:hAnsiTheme="minorHAnsi" w:cstheme="minorHAnsi"/>
+                <w:b/>
+                <w:sz w:val="18"/>
+                <w:szCs w:val="18"/>
+              </w:rPr>
+            </w:pPr>
+            <w:r>
+              <w:rPr>
+                <w:rFonts w:asciiTheme="minorHAnsi" w:hAnsiTheme="minorHAnsi" w:cstheme="minorHAnsi"/>
+                <w:b/>
+                <w:sz w:val="18"/>
+                <w:szCs w:val="18"/>
+              </w:rPr>
+              <w:t>MES DE FEBRERO 2026</w:t>
+            </w:r>
+            
+          </w:p>
+          <w:p w14:paraId="23E01E16" w14:textId="77777777" w:rsidR="008B6090" w:rsidRPr="00241456" w:rsidRDefault="008B6090" w:rsidP="00847943">
+            <w:pPr>
+              <w:pStyle w:val="TableParagraph"/>
+              <w:spacing w:line="181" w:lineRule="exact"/>
+              <w:ind w:left="435" w:right="431"/>
+              <w:jc w:val="both"/>
+              <w:rPr>
+                <w:rFonts w:asciiTheme="minorHAnsi" w:hAnsiTheme="minorHAnsi" w:cstheme="minorHAnsi"/>
+                <w:sz w:val="18"/>
+                <w:szCs w:val="18"/>
+              </w:rPr>
+            </w:pPr>
+          </w:p>
+        </w:tc>
+      </w:tr>
+    </w:tbl>

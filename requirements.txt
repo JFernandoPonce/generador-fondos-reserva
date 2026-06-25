@@ -1,0 +1,5 @@
+flask
+openpyxl
+pandas
+python-docx
+xlrd

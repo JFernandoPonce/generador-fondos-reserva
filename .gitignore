@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+venv/
+env/
+.venv/
+
+# Entornos / logs
+*.log
+.env
+
+# Datos reales de entrada (Excel del IESS / Mineduc con cédulas) — NO subir
+*.xlsx
+*.xls
+
+# Informes generados
+informes_generados/
+
+# Sistema
+.DS_Store
+Thumbs.db
+
+# Novedades precargadas con datos reales (cédulas/nombres) — NO subir
+datos_anteriores.json

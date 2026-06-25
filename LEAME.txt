@@ -1,0 +1,91 @@
+# Generador de Informes — Fondos de Reserva 17D08
+
+## ¿Qué hace esta aplicación?
+
+Genera automáticamente el Informe Técnico de Fondos de Reserva en formato Word (.docx),
+idéntico al formato oficial, a partir de dos archivos Excel del mes correspondiente.
+
+---
+
+## Archivos del sistema
+
+```
+app_fondos_reserva/
+├── INICIAR.bat          ← Doble clic para abrir la app (Windows)
+├── iniciar.sh           ← Para Mac/Linux
+├── app.py               ← Servidor local (no tocar)
+├── generar_informe.py   ← Motor de generación Word (no tocar)
+├── index.html           ← Interfaz de la aplicación (no tocar)
+└── LEAME.txt            ← Este archivo
+```
+
+---
+
+## Cómo usar (Windows)
+
+1. **Doble clic** en `INICIAR.bat`
+2. Espere a que aparezca el servidor (se abre automáticamente el navegador)
+3. Si no se abre el navegador, escriba en Chrome/Edge: `http://localhost:5000`
+4. Siga los 5 pasos de la aplicación
+5. El informe Word se descarga automáticamente al finalizar
+6. Para cerrar: cierre la ventana negra de comandos
+
+## Cómo usar (Mac/Linux)
+
+1. Abra una terminal en esta carpeta
+2. Ejecute: `bash iniciar.sh`
+3. El navegador se abre automáticamente
+
+---
+
+## Archivos que necesita para cada mes
+
+### Archivo 1 — Matriz Fondos de Reserva (IESS)
+- Excel descargado del IESS
+- Debe tener una hoja llamada **"Hoja2"**
+- Contiene: Cédula, Nombre Afiliado, Tiene Solicitud, Fecha Solicitud, Tiene Cargos, Tiene Derecho
+
+### Archivo 2 — Distributivo de Trabajo (Mineduc)
+- Excel del Ministerio de Educación
+- Columnas requeridas: ESTADO DEL PUESTO, NÚMERO IDENTIFICACIÓN, NOMBRES, ESTRUCTURA PROGRAMÁTICA
+
+---
+
+## Flujo de la aplicación
+
+**Paso 1 — Archivos:** Cargue los dos Excel del mes.
+
+**Paso 2 — Configuración:** Complete los datos del encabezado del informe
+(mes, número de informe, fechas, nombres de los responsables).
+
+**Paso 3 — Novedades:** Ingrese manualmente las novedades del mes
+(encargos, CMYO, sectorización, jubilaciones, etc.). Las que no apliquen déjelas vacías.
+
+**Paso 4 — Sin coincidencia:** Si algún funcionario de la Matriz no aparece
+en el Distributivo, la app le pedirá que complete su nombre y estructura.
+
+**Paso 5 — Generar:** Haga clic en "Generar Informe Word". El documento
+se descarga automáticamente a su carpeta de Descargas.
+
+---
+
+## Requisitos
+
+- Windows 10 o superior (o Mac/Linux)
+- Python 3.8 o superior instalado (https://www.python.org/downloads/)
+  - Al instalar: marcar "Add Python to PATH"
+- Conexión a internet solo la primera vez (para instalar dependencias)
+- Navegador web: Chrome o Edge recomendados
+
+---
+
+## Soporte
+
+Si aparece algún error:
+1. Verifique que Python esté instalado correctamente
+2. Verifique que los archivos Excel tengan el formato esperado
+3. Verifique que el servidor (ventana negra) no muestre errores
+
+---
+
+Dirección Distrital 17D08 — Parroquias Rurales Conocoto a La Merced — Educación
