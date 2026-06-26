@@ -113,7 +113,7 @@ select option{background:var(--bg2)}
 .col-config{background:var(--bg);border:1px solid var(--border);border-radius:var(--r);padding:.75rem;margin-bottom:.75rem}
 .col-config-title{font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--txt3);margin-bottom:.55rem;font-family:'JetBrains Mono',monospace}
 .col-list{display:flex;flex-direction:column;gap:.3rem;margin-bottom:.5rem}
-.col-row{display:grid;grid-template-columns:1fr 1fr auto;gap:.4rem;align-items:center}
+.col-row{display:grid;grid-template-columns:1fr auto;gap:.4rem;align-items:center}
 .col-row input{padding:.25rem .45rem;font-size:.72rem}
 .col-row select{padding:.22rem .4rem;font-size:.68rem}
 .btn-add-col{font-size:.68rem;padding:.22rem .7rem;background:transparent;border:1px solid var(--border2);color:var(--txt3);border-radius:4px;cursor:pointer;transition:all .15s}
@@ -514,14 +514,14 @@ function toggleNov(id){const body=document.getElementById(`nov-body-${id}`);body
 function removeNov(id){const item=document.querySelector(`[data-id="${id}"]`);if(item)item.remove();updateEmpty();}
 function addCol(novId,header='Nueva Columna',width=1000){
   const list=document.getElementById(`col-list-${novId}`);const row=document.createElement('div');row.className='col-row';
-  const autoW=getAnchoAuto(header);const usedW=autoW||width||1800;
-  const optsHtml=OPCIONES_ANCHO.map(o=>`<option value="${o.dxa}" ${Math.abs(o.dxa-usedW)<300?'selected':''}>${o.label}</option>`).join('');
-  row.innerHTML=`<input type="text" value="${header}" placeholder="Nombre columna" onchange="onColNameChange(this,${novId})" oninput="onColNameChange(this,${novId})"><select onchange="rebuildTable(${novId})">${optsHtml}</select><button class="btn-remove-col" onclick="removeCol(this,${novId})">✕</button>`;
+  const usedW=getAnchoAuto(header)||width||1800;
+  row.dataset.w=usedW;   // ancho automático (no se muestra selector); por nombre vía ANCHOS_CONOCIDOS
+  row.innerHTML=`<input type="text" value="${header}" placeholder="Nombre columna" onchange="onColNameChange(this,${novId})" oninput="onColNameChange(this,${novId})"><button class="btn-remove-col" onclick="removeCol(this,${novId})">✕</button>`;
   list.appendChild(row);rebuildTable(novId);
 }
 function removeCol(btn,novId){btn.closest('.col-row').remove();rebuildTable(novId);}
-function getCols(novId){return Array.from(document.querySelectorAll(`#col-list-${novId} .col-row`)).map(r=>({h:r.querySelectorAll('input')[0].value.trim(),w:parseInt(r.querySelector('select')?.value||r.querySelectorAll('input')[1]?.value)||1800}));}
-function onColNameChange(input,novId){const sel=input.closest('.col-row')?.querySelector('select');if(!sel)return;const autoW=getAnchoAuto(input.value);if(autoW){const opts=Array.from(sel.options);let best=opts[0];opts.forEach(o=>{if(Math.abs(parseInt(o.value)-autoW)<Math.abs(parseInt(best.value)-autoW))best=o;});sel.value=best.value;}rebuildTable(novId);}
+function getCols(novId){return Array.from(document.querySelectorAll(`#col-list-${novId} .col-row`)).map(r=>({h:r.querySelectorAll('input')[0].value.trim(),w:parseInt(r.dataset.w)||1800}));}
+function onColNameChange(input,novId){const row=input.closest('.col-row');if(!row)return;const autoW=getAnchoAuto(input.value);if(autoW)row.dataset.w=autoW;rebuildTable(novId);}
 function getDataRows(novId){const tbl=document.querySelector(`#data-wrap-${novId} .nov-data-tbl tbody`);if(!tbl)return[];return Array.from(tbl.querySelectorAll('tr')).map(tr=>Array.from(tr.querySelectorAll('input')).map(i=>i.value.trim())).filter(r=>r.some(v=>v!==''));}
 function rebuildTable(novId){
   const cols=getCols(novId);const existingRows=getDataRows(novId);const wrap=document.getElementById(`data-wrap-${novId}`);
