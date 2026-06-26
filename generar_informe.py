@@ -767,16 +767,18 @@ def generar_excel_respaldo(cfg, novedades, sA, sB, sC, sD, gran_total, output_pa
                            grp_A=None, grp_B=None, grp_C=None, grp_D=None,
                            renuncias_df=None, renuncia_extras=None):
     """
-    Genera un Excel con todas las tablas del informe en una sola hoja,
-    separadas por sección, en el mismo orden que el Word.
+    Genera un Excel de respaldo con CADA tabla del informe en su propia hoja
+    (una hoja por novedad / categoría / nómina automática) + una hoja RESUMEN
+    al final. Mismo orden y datos que el Word; formato por hojas como el
+    generador de nómina.
     """
+    import re as _re
     from openpyxl import Workbook
     from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
     from openpyxl.utils import get_column_letter
 
     wb = Workbook()
-    ws = wb.active
-    ws.title = "Informe Fondos de Reserva"
+    wb.remove(wb.active)   # se crea una hoja por tabla; no se usa la hoja por defecto
 
     # Estilos
     hdr_fill   = PatternFill("solid", fgColor="1A3A5C")   # azul oscuro
@@ -790,6 +792,26 @@ def generar_excel_respaldo(cfg, novedades, sA, sB, sC, sD, gran_total, output_pa
     border = Border(left=thin, right=thin, top=thin, bottom=thin)
     center = Alignment(horizontal="center", vertical="center", wrap_text=True)
     left   = Alignment(horizontal="left",   vertical="center", wrap_text=True)
+
+    ws = None
+    cur_row = 1
+    _used = set()
+
+    def _sheet_name(base):
+        # Nombre de hoja válido: <=31 chars, sin / \ ? * [ ] :, único
+        name = _re.sub(r'[/\\\?\*\[\]:]', '-', str(base)).strip()[:31] or "Hoja"
+        cand = name; i = 1
+        while cand.lower() in _used:
+            suf = f" ({i})"; cand = name[:31 - len(suf)] + suf; i += 1
+        _used.add(cand.lower())
+        return cand
+
+    def nueva_hoja(base, ncols=10):
+        nonlocal ws, cur_row
+        ws = wb.create_sheet(title=_sheet_name(base))
+        cur_row = 1
+        for col in range(1, max(ncols, 1) + 2):
+            ws.column_dimensions[get_column_letter(col)].width = 18
 
     def write_hdr(row, col, text, fill=None, font=None, align=center):
         c = ws.cell(row=row, column=col, value=text)
@@ -814,40 +836,32 @@ def generar_excel_respaldo(cfg, novedades, sA, sB, sC, sD, gran_total, output_pa
         c.alignment = center
         ws.row_dimensions[row].height = 18
 
-    cur_row = 1
-
-    # ── Información del informe ───────────────────────────────
-    write_section_title(cur_row, f"INFORME FONDOS DE RESERVA — {cfg.get('mes','')} {cfg.get('anio','')} — {cfg.get('nro_informe','')}", ncols=12)
-    cur_row += 2
-
-    # ── Novedades ─────────────────────────────────────────────
     item_num = 5
-    for nov in novedades:
-        titulo  = nov.get("titulo","NOVEDAD").strip()
-        headers = nov.get("headers",[])
-        filas   = nov.get("filas",[])
-        if not headers: continue
 
-        titulo_completo = f"{item_num}.- NOVEDAD: {titulo}"
-        write_section_title(cur_row, titulo_completo, ncols=len(headers))
+    # ── Novedades manuales: una hoja cada una ─────────────────
+    for nov in novedades:
+        titulo  = nov.get("titulo", "NOVEDAD").strip()
+        headers = nov.get("headers", [])
+        filas   = nov.get("filas", [])
+        if not headers:
+            continue
+        nueva_hoja(titulo or f"Novedad {item_num}", ncols=len(headers))
+        write_section_title(cur_row, f"{item_num}.- NOVEDAD: {titulo}", ncols=len(headers))
         cur_row += 1
-        # Headers
         for ci, h in enumerate(headers):
-            write_hdr(cur_row, ci+1, h)
+            write_hdr(cur_row, ci + 1, h)
         cur_row += 1
-        # Datos
         for fila in filas:
             for ci, v in enumerate(fila):
-                write_body(cur_row, ci+1, v, align=(center if ci==0 else left))
+                write_body(cur_row, ci + 1, v, align=(center if ci == 0 else left))
             cur_row += 1
         if not filas:
             ws.merge_cells(start_row=cur_row, start_column=1, end_row=cur_row, end_column=len(headers))
             write_body(cur_row, 1, "(sin registros)")
             cur_row += 1
-        cur_row += 1
         item_num += 1
 
-    # ── Tablas por categoría de sin_match ────────────────────
+    # ── Desvinculaciones por categoría: una hoja cada una ─────
     if renuncias_df is not None and len(renuncias_df) > 0:
         if renuncia_extras is None:
             renuncia_extras = {}
@@ -863,89 +877,86 @@ def generar_excel_respaldo(cfg, novedades, sA, sB, sC, sD, gran_total, output_pa
                     cat_rows.append((ced, row, extras))
             if not cat_rows:
                 continue
+            nueva_hoja(cat, ncols=len(ren_hdrs))
             write_section_title(cur_row, f"{item_num}.- NOVEDAD: {cat}", ncols=len(ren_hdrs))
             cur_row += 1
             for ci, h in enumerate(ren_hdrs):
-                write_hdr(cur_row, ci+1, h)
+                write_hdr(cur_row, ci + 1, h)
             cur_row += 1
             for i, (ced, row, extras) in enumerate(cat_rows):
                 vals = [
-                    str(i+1), ced,
+                    str(i + 1), ced,
                     row["Nombre"] if row["Nombre"] and str(row["Nombre"]) != "nan" else "",
                     extras.get("rmu", ""),
                     extras.get("observacion", f"{cat} / NO CONSTA EN DISTRIBUTIVO")
                 ]
                 for ci, v in enumerate(vals):
-                    write_body(cur_row, ci+1, v, align=(center if ci==0 else left))
+                    write_body(cur_row, ci + 1, v, align=(center if ci == 0 else left))
                 cur_row += 1
-            cur_row += 1
             item_num += 1
 
-    # ── Nóminas automáticas ───────────────────────────────────
-    NOMINA_HDR = ["N","Cedula","Nombre Afiliado","Tiene Solicitud","Fecha Solicitud",
-                  "Tiene Cargos","Tiene Derecho","Estructura","Acumula"]
+    # ── Nóminas automáticas: una hoja cada una ────────────────
+    NOMINA_HDR = ["N", "Cedula", "Nombre Afiliado", "Tiene Solicitud", "Fecha Solicitud",
+                  "Tiene Cargos", "Tiene Derecho", "Estructura", "Acumula"]
 
     def write_nomina(titulo, grupos, acumula_val, item_n):
         nonlocal cur_row
+        nueva_hoja(titulo, ncols=len(NOMINA_HDR))
         write_section_title(cur_row, f"{item_n}. {titulo}", ncols=len(NOMINA_HDR))
         cur_row += 1
         for ci, h in enumerate(NOMINA_HDR):
-            write_hdr(cur_row, ci+1, h)
+            write_hdr(cur_row, ci + 1, h)
         cur_row += 1
         counter = 1
         for est, sub in grupos.items():
             for _, row in sub.iterrows():
-                fecha = row["FechaSolicitud"] if row["TieneSolicitud"]=="SI" else ""
+                fecha = row["FechaSolicitud"] if row["TieneSolicitud"] == "SI" else ""
                 vals = [str(counter), row["Cedula"], row["Nombre"],
                         row["TieneSolicitud"], fecha, row["TieneCargos"],
                         row["TieneDerecho"], row["Estructura"], str(acumula_val)]
                 for ci, v in enumerate(vals):
-                    write_body(cur_row, ci+1, v, align=(center if ci in [0,3,4,5,6,7,8] else left))
+                    write_body(cur_row, ci + 1, v, align=(center if ci in [0, 3, 4, 5, 6, 7, 8] else left))
                 cur_row += 1
                 counter += 1
         if counter == 1:
             write_body(cur_row, 1, "(sin registros)"); cur_row += 1
-        cur_row += 1
 
-    write_nomina("14.1 SOLICITUD SI / DERECHO NO",  sA, 0, item_num)
-    write_nomina("14.1 SOLICITUD NO / DERECHO NO",  sD, 0, item_num)
-    write_nomina("14.2 ACUMULAN (SI/SI)",            sB, 2, item_num)
-    write_nomina("14.3 MENSUALIZA (NO/SI)",          sC, 1, item_num)
+    write_nomina("14.1 SOLICITUD SI / DERECHO NO", sA, 0, item_num)
+    write_nomina("14.1 SOLICITUD NO / DERECHO NO", sD, 0, item_num)
+    write_nomina("14.2 ACUMULAN (SI/SI)",           sB, 2, item_num)
+    write_nomina("14.3 MENSUALIZA (NO/SI)",         sC, 1, item_num)
 
-    # ── Tabla resumen completa LOSEP/CT/LOEI ────────────────
-    NCOLS_RES = 8  # DETALLE + SD + M + A + TOTAL (con subtotales por programa)
+    # ── Hoja RESUMEN (al final) ───────────────────────────────
+    NCOLS_RES = 8
+    nueva_hoja("RESUMEN", ncols=NCOLS_RES)
     write_section_title(cur_row, "TABLA RESUMEN — CANCELACIÓN FONDOS DE RESERVA", ncols=NCOLS_RES)
     cur_row += 1
 
-    # Calcular desglose si tenemos los grupos originales
     if grp_A is not None and grp_B is not None and grp_C is not None and grp_D is not None:
         sin_d = pd.concat([grp_D, grp_A]).copy() if len(grp_A) > 0 else grp_D.copy()
-        ESTR = [["1--11"],["55-2","55-4"],["56-1","56-3"],["57-1"],["58-1","58-2"]]
+        ESTR = [["1--11"], ["55-2", "55-4"], ["56-1", "56-3"], ["57-1"], ["58-1", "58-2"]]
 
         def sv(df_r, ests, reg=None):
             if reg and "Regimen" in df_r.columns:
-                df_r = df_r[df_r["Regimen"]==reg]
-            return [sum(len(df_r[df_r["Estructura"]==e]) for e in g) for g in ests]
+                df_r = df_r[df_r["Regimen"] == reg]
+            return [sum(len(df_r[df_r["Estructura"] == e]) for e in g) for g in ests]
 
-        lsd=sv(sin_d,ESTR,"LOSEP"); lm=sv(grp_C,ESTR,"LOSEP"); la=sv(grp_B,ESTR,"LOSEP")
-        lsd_t=sum(lsd); lm_t=sum(lm); la_t=sum(la); lt=lsd_t+lm_t+la_t
+        lsd = sv(sin_d, ESTR, "LOSEP"); lm = sv(grp_C, ESTR, "LOSEP"); la = sv(grp_B, ESTR, "LOSEP")
+        lsd_t = sum(lsd); lm_t = sum(lm); la_t = sum(la); lt = lsd_t + lm_t + la_t
 
-        ctsd=sv(sin_d,ESTR,"CT"); ctm=sv(grp_C,ESTR,"CT"); cta=sv(grp_B,ESTR,"CT")
-        ctsd_t=sum(ctsd); ctm_t=sum(ctm); cta_t=sum(cta); ctt=ctsd_t+ctm_t+cta_t
+        ctsd = sv(sin_d, ESTR, "CT"); ctm = sv(grp_C, ESTR, "CT"); cta = sv(grp_B, ESTR, "CT")
+        ctsd_t = sum(ctsd); ctm_t = sum(ctm); cta_t = sum(cta); ctt = ctsd_t + ctm_t + cta_t
 
-        esd=sv(sin_d,ESTR,"LOEI"); em=sv(grp_C,ESTR,"LOEI"); ea=sv(grp_B,ESTR,"LOEI")
-        esd_t=sum(esd); em_t=sum(em); ea_t=sum(ea); et_=esd_t+em_t+ea_t
+        esd = sv(sin_d, ESTR, "LOEI"); em = sv(grp_C, ESTR, "LOEI"); ea = sv(grp_B, ESTR, "LOEI")
+        esd_t = sum(esd); em_t = sum(em); ea_t = sum(ea); et_ = esd_t + em_t + ea_t
 
-        tsd_t=lsd_t+ctsd_t+esd_t; tm_t=lm_t+ctm_t+em_t; ta_t=la_t+cta_t+ea_t
+        tsd_t = lsd_t + ctsd_t + esd_t; tm_t = lm_t + ctm_t + em_t; ta_t = la_t + cta_t + ea_t
 
-        # Headers de la tabla resumen
         res_hdrs = ["DETALLE", "SIN DERECHO", "MENSUALIZA", "ACUMULA", "TOTAL"]
         for ci, h in enumerate(res_hdrs):
-            write_hdr(cur_row, ci+1, h, fill=hdr_fill, font=hdr_font)
+            write_hdr(cur_row, ci + 1, h, fill=hdr_fill, font=hdr_font)
         cur_row += 1
 
-        # Filas por régimen
-        res_fill = PatternFill("solid", fgColor="E8F0FE")
         tot_fill = PatternFill("solid", fgColor="D6E4F0")
         for label, sd, m, a, total, fill in [
             ("LOSEP", lsd_t, lm_t, la_t, lt, None),
@@ -954,34 +965,24 @@ def generar_excel_respaldo(cfg, novedades, sA, sB, sC, sD, gran_total, output_pa
             ("TOTAL", tsd_t, tm_t, ta_t, gran_total, tot_fill),
         ]:
             write_body(cur_row, 1, label, align=left)
-            if fill:
-                for ci in range(5):
-                    ws.cell(row=cur_row, column=ci+1).fill = fill
-                    ws.cell(row=cur_row, column=ci+1).font = Font(name="Calibri", bold=True, size=8)
             write_body(cur_row, 2, sd)
             write_body(cur_row, 3, m)
             write_body(cur_row, 4, a)
             write_body(cur_row, 5, total)
             if fill:
                 for ci in range(5):
-                    ws.cell(row=cur_row, column=ci+1).fill = fill
-                    ws.cell(row=cur_row, column=ci+1).font = Font(name="Calibri", bold=True, size=8)
+                    ws.cell(row=cur_row, column=ci + 1).fill = fill
+                    ws.cell(row=cur_row, column=ci + 1).font = Font(name="Calibri", bold=True, size=8)
             cur_row += 1
 
         cur_row += 1
-        # Total funcionarios destacado
         write_hdr(cur_row, 1, "TOTAL FUNCIONARIOS", fill=hdr_fill, font=hdr_font)
         write_hdr(cur_row, 2, str(gran_total), fill=hdr_fill, font=hdr_font)
         cur_row += 2
     else:
-        # Fallback si no se pasaron los grupos originales
         write_hdr(cur_row, 1, "TOTAL FUNCIONARIOS", fill=PatternFill("solid", fgColor="1A3A5C"), font=hdr_font)
         write_hdr(cur_row, 2, str(gran_total), fill=PatternFill("solid", fgColor="1A3A5C"), font=hdr_font)
         cur_row += 2
-
-    # Ajustar ancho de columnas automáticamente
-    for col in range(1, 13):
-        ws.column_dimensions[get_column_letter(col)].width = 18
 
     wb.save(output_path)
     print(f"✔ Excel de respaldo guardado: {output_path}")
