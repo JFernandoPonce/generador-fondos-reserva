@@ -480,6 +480,9 @@ function nuevaNovedad(plantilla=null, prevData=null){
   const item=document.createElement('div');item.className='nov-item';item.dataset.id=id;
   item.innerHTML=`<div class="nov-item-head"><span class="nov-drag" title="Arrastrar">⣿</span><input class="nov-titulo-input" type="text" value="${titulo}" placeholder="Título de esta novedad…" id="nov-tit-${id}"><button class="btn-expand" onclick="toggleNov(${id})">▼</button><button class="btn-remove-nov" onclick="removeNov(${id})">✕</button></div><div class="nov-item-body open" id="nov-body-${id}"><div class="col-config"><div class="col-config-title">Columnas de la tabla</div><div class="col-list" id="col-list-${id}"></div><button class="btn-add-col" onclick="addCol(${id})">+ Agregar columna</button></div><div id="data-wrap-${id}"></div><button class="btn-add-row" onclick="addDataRow(${id})">+ Agregar fila</button></div>`;
   getNovList().appendChild(item);cols.forEach(c=>addCol(id,c.h,c.w));
+  // addCol -> rebuildTable siembra una fila vacía; limpiarla antes de poblar
+  // para no dejar una fila vacía de más (con o sin datos anteriores).
+  const _tb=document.getElementById(`dtb-${id}`); if(_tb) _tb.innerHTML='';
   // Pre-fill rows from prevData if available
   if(prevData && prevData.filas && prevData.filas.length > 0) {
     prevData.filas.forEach(rowData => {
