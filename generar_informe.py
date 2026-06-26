@@ -866,7 +866,7 @@ def generar_excel_respaldo(cfg, novedades, sA, sB, sC, sD, gran_total, output_pa
         if renuncia_extras is None:
             renuncia_extras = {}
         ren_hdrs = ["No", "CÉDULA", "APELLIDOS Y NOMBRES", "RMU", "OBSERVACIÓN"]
-        CATEGORIAS_SM = ["RENUNCIA", "NOTIFICACIÓN DE SALIDA", "FALLECIMIENTO"]
+        CATEGORIAS_SM = ["RENUNCIA", "NOTIFICACIÓN DE SALIDA", "FALLECIMIENTO", "JUBILACIÓN VOLUNTARIA", "JUBILACIÓN OBLIGATORIA", "JUBILACIÓN POR DISCAPACIDAD", "JUBILACIÓN POR INCAPACIDAD"]
         for cat in CATEGORIAS_SM:
             cat_rows = []
             for _, row in renuncias_df.iterrows():
@@ -1159,7 +1159,7 @@ def generate(cfg_str, output_path, plantilla_path=None):
     renuncias_df = df[df["Cedula"].isin(sm_ceds)]
 
     # Agrupar por categoría asignada en el paso 4
-    CATEGORIAS_SM = ["RENUNCIA", "NOTIFICACIÓN DE SALIDA", "FALLECIMIENTO"]
+    CATEGORIAS_SM = ["RENUNCIA", "NOTIFICACIÓN DE SALIDA", "FALLECIMIENTO", "JUBILACIÓN VOLUNTARIA", "JUBILACIÓN OBLIGATORIA", "JUBILACIÓN POR DISCAPACIDAD", "JUBILACIÓN POR INCAPACIDAD"]
     for cat in CATEGORIAS_SM:
         cat_rows = []
         for _, row in renuncias_df.iterrows():
