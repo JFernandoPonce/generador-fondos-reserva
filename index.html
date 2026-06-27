@@ -595,7 +595,9 @@ async function generarWord(){
   const extraRows=Array.from(document.querySelectorAll('#sm-extra-list .sm-extra-row')).map(row=>({
     cedula:(row.querySelector('.se-ced')?.value||'').trim(),
     nombre:(row.querySelector('.se-nom')?.value||'').trim(),
-    estructura:(row.querySelector('.se-est')?.value||'').trim()||'PENDIENTE',
+    // Estructura ya no se pide aqui: si la persona consta oficialmente, el
+    // backend usa su Estructura real (no la de este formulario); si es
+    // nueva, no participa en nominas 14.x, asi que no la necesita.
     rmu:(row.querySelector('.se-rmu')?.value||'').trim(),
     observacion:(row.querySelector('.se-obs')?.value||'').trim()||'NOTIFICACIÓN',
     categoria:(row.querySelector('.se-cat')?.value||'NOTIFICACIÓN DE SALIDA'),
@@ -639,11 +641,14 @@ function smAddExtra(){
   const id=++smExtraCount;
   const row=document.createElement('div');
   row.className='sm-extra-row';
-  row.style.cssText='display:grid;grid-template-columns:110px 1fr 80px 70px 1fr 140px auto;gap:.4rem;align-items:center;padding:.35rem 0;border-bottom:1px solid #f59e0b18';
+  row.style.cssText='display:grid;grid-template-columns:110px 64px 1fr 70px 1fr 140px auto;gap:.4rem;align-items:center;padding:.35rem 0;border-bottom:1px solid #f59e0b18';
   row.innerHTML=`
     <input class="se-ced" placeholder="Cédula" style="font-size:.71rem;padding:.28rem .5rem;background:var(--bg2);border:1px solid var(--border2);color:var(--txt);border-radius:4px">
-    <input class="se-nom" placeholder="Apellidos y Nombres" style="font-size:.71rem;padding:.28rem .5rem;background:var(--bg2);border:1px solid var(--border2);color:var(--txt);border-radius:4px">
-    <input class="se-est" placeholder="56-1 / 57-1 / 1-11" style="font-size:.71rem;padding:.28rem .5rem;background:var(--bg2);border:1px solid var(--border2);color:var(--txt);border-radius:4px">
+    <button class="se-buscar" onclick="smBuscarPersona(this)" type="button" style="font-size:.65rem;padding:.28rem .3rem;background:var(--bg3);border:1px solid var(--border2);color:var(--txt2);border-radius:4px;cursor:pointer" title="Buscar en Planilla/Matriz/Distributivo ya cargados">🔍</button>
+    <div style="display:flex;flex-direction:column;gap:.15rem">
+      <input class="se-nom" placeholder="Use 🔍 Buscar, o escriba el nombre si es nueva" style="font-size:.71rem;padding:.28rem .5rem;background:var(--bg2);border:1px solid var(--border2);color:var(--txt);border-radius:4px">
+      <span class="se-status" style="font-size:.6rem;color:var(--txt3)"></span>
+    </div>
     <input class="se-rmu" placeholder="RMU" style="font-size:.71rem;padding:.28rem .5rem;background:var(--bg2);border:1px solid var(--border2);color:var(--txt);border-radius:4px">
     <input class="se-obs" placeholder="Observación" value="NOTIFICACIÓN FIN DE MES" style="font-size:.7rem;padding:.28rem .5rem;background:var(--bg2);border:1px solid var(--border2);color:var(--txt);border-radius:4px">
     <select class="se-cat" style="font-size:.67rem;padding:.22rem .4rem;background:var(--bg2);border:1px solid var(--border2);color:var(--txt);border-radius:4px">
@@ -654,6 +659,34 @@ function smAddExtra(){
     </select>
     <button onclick="this.closest('.sm-extra-row').remove()" style="background:none;border:none;color:var(--red);cursor:pointer;font-size:.9rem;padding:0 3px;opacity:.7">✕</button>`;
   list.appendChild(row);
+}
+
+async function smBuscarPersona(btn){
+  const row=btn.closest('.sm-extra-row');
+  const cedInput=row.querySelector('.se-ced');
+  const nomInput=row.querySelector('.se-nom');
+  const statusEl=row.querySelector('.se-status');
+  const ced=(cedInput.value||'').trim();
+  if(!ced){statusEl.textContent='Ingrese la cédula primero';statusEl.style.color='var(--amber)';return;}
+  if(!archivoPlanilla||!archivoMatriz||!archivoDistrib){statusEl.textContent='Cargue primero los 3 archivos oficiales';statusEl.style.color='var(--amber)';return;}
+  statusEl.textContent='Buscando...';statusEl.style.color='var(--txt3)';
+  const fd=new FormData();
+  fd.append('planilla',archivoPlanilla);fd.append('matriz',archivoMatriz);fd.append('distributivo',archivoDistrib);
+  fd.append('cedula',ced);
+  try{
+    const res=await fetch('/buscar_persona',{method:'POST',body:fd});
+    const data=await res.json();
+    if(data.error){statusEl.textContent='Error: '+data.error;statusEl.style.color='var(--red)';return;}
+    if(data.encontrado){
+      nomInput.value=data.nombre;nomInput.readOnly=true;nomInput.style.background='var(--bg3)';
+      statusEl.textContent=`✔ Encontrada — ${data.clasificacion}${data.estructura?' · '+data.estructura:''}`;
+      statusEl.style.color='var(--green)';
+    }else{
+      nomInput.value='';nomInput.readOnly=false;nomInput.style.background='var(--bg2)';
+      statusEl.textContent='⚠ No consta en ninguna fuente — escriba el nombre';
+      statusEl.style.color='var(--amber)';
+    }
+  }catch(err){statusEl.textContent='Error de red: '+err.message;statusEl.style.color='var(--red)';}
 }
 
 function mostrarInfo(id,msg){const e=document.getElementById(id);e.textContent=msg;e.className='alert alert-info visible';}

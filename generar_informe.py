@@ -1053,21 +1053,48 @@ def generate(cfg_str, output_path, plantilla_path=None):
     df, sm = load_data(cfg["path_planilla"], cfg["path_matriz"], cfg["path_distributivo"])
 
     # Guardar datos extra de sin_match (RMU, observación, categoría) para tablas automáticas
+    sm_ceds_originales = {norm_ced(x["Cedula"]) for x in sm}  # antes de extender sm
     renuncia_extras = {}  # cedula → {rmu, observacion, categoria}
+    nuevos_manuales = []  # personas "extra" que no existen en NINGUNA de las 3 fuentes
+    manual_ceds = set()   # TODAS las cédulas marcadas manualmente (match normal o no)
     for m in cfg.get("manual_completados", []):
         ced = norm_ced(m["cedula"]); mask = df["Cedula"]==ced
+        manual_ceds.add(ced)
         # Normalizar estructura: "1-11" → "1--11", "1--11" queda igual
         raw_est = str(m.get("estructura","")).strip()
         if raw_est.upper() in ("1-11","1--11","1 11","1- 11","1-  11"):
             raw_est = "1--11"
         if mask.any():
-            df.loc[mask,"Nombre"]     = m["nombre"]
-            df.loc[mask,"Estructura"] = raw_est
+            if ced in sm_ceds_originales:
+                # Viene de la grilla "sin coincidencia": Nombre/Estructura son
+                # placeholders reales que el usuario completa.
+                df.loc[mask,"Nombre"]     = m["nombre"]
+                df.loc[mask,"Estructura"] = raw_est
+            # Si NO estaba en sin_match, es un match normal (Matriz+Distributivo,
+            # p.ej. alguien desvinculado a medio mes): sus datos reales de
+            # Nombre/Estructura/clasificación MA NO se tocan. Solo se anota
+            # para que aparezca en su tabla de categoría de novedad (abajo).
+        else:
+            # Persona "extra" que no existe en NINGUNA de las 3 fuentes.
+            # Se agrega como fila nueva con MA=-1 (fuera de la clasificación
+            # 0/1/2: no hay Derecho/Solicitud real que evaluar). Aparece SOLO
+            # en su tabla de categoría de novedad, sin afectar nóminas 14.x
+            # ni el resumen por régimen.
+            nuevos_manuales.append({
+                "Cedula": ced, "TieneSolicitud": "", "FechaSolicitud": "",
+                "TieneCargos": "", "TieneDerecho": "", "MA": -1,
+                "Nombre": m.get("nombre",""), "Estructura": raw_est or "PENDIENTE",
+                "Regimen": "LOEI",
+            })
         renuncia_extras[ced] = {
             "rmu": m.get("rmu", ""),
             "observacion": m.get("observacion", "RENUNCIA / NO CONSTA EN DISTRIBUTIVO"),
             "categoria": m.get("categoria", "RENUNCIA")
         }
+
+    if nuevos_manuales:
+        df = pd.concat([df, pd.DataFrame(nuevos_manuales)], ignore_index=True)
+        sm = sm + nuevos_manuales
 
     print(f"[2/5] Agrupando {len(df)} registros (clasificación ya aplicada por load_data)...")
 
@@ -1155,7 +1182,10 @@ def generate(cfg_str, output_path, plantilla_path=None):
 
     # ── ÍTEMS AUTOMÁTICOS POR CATEGORÍA (sin_match agrupados) ──
     # sm contiene los registros de la Matriz que NO están en el Distributivo
-    sm_ceds = {norm_ced(m["Cedula"]) for m in sm}
+    # Union: sin_match real (incluye los "nuevos_manuales" ya agregados a sm)
+    # + cualquier cédula marcada manualmente, aunque tenga match normal
+    # (ej. desvinculación a medio mes que no cae en sin_match).
+    sm_ceds = {norm_ced(m["Cedula"]) for m in sm} | manual_ceds
     renuncias_df = df[df["Cedula"].isin(sm_ceds)]
 
     # Agrupar por categoría asignada en el paso 4

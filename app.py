@@ -10,7 +10,7 @@ from flask import Flask, request, jsonify, send_file, render_template_string
 
 # Importar el generador
 sys.path.insert(0, str(Path(__file__).parent))
-from generar_informe import generate
+from generar_informe import generate, load_data, norm_ced
 
 app = Flask(__name__)
 app.config['MAX_CONTENT_LENGTH'] = 50 * 1024 * 1024  # 50 MB máximo
@@ -247,6 +247,67 @@ def cruce():
 
     except Exception as e:
         return jsonify({'error': str(e), 'detalle': traceback.format_exc()}), 500
+
+
+# ─── ENDPOINT: BUSCAR PERSONA (lookup para "+Agregar persona") ──
+@app.route('/buscar_persona', methods=['POST'])
+def buscar_persona():
+    """Busca una cédula en las 3 fuentes ya cruzadas (mismo motor de /generar).
+
+    Se usa desde el panel "Sin coincidencia" -> "+Agregar persona": el usuario
+    escribe solo la cédula y la app confirma si la persona consta oficialmente
+    (Distributivo/Matriz) y trae su nombre real, sin que el usuario tenga que
+    escribirlo. NO modifica nada; es de solo lectura.
+    """
+    tmp_dir = None
+    try:
+        cedula = (request.form.get('cedula') or '').strip()
+        if not cedula:
+            return jsonify({'error': 'Cédula vacía'}), 400
+        if 'planilla' not in request.files or 'matriz' not in request.files or 'distributivo' not in request.files:
+            return jsonify({'error': 'Faltan archivos: planilla, matriz y/o distributivo'}), 400
+
+        f_planilla = request.files['planilla']
+        f_matriz   = request.files['matriz']
+        f_dist     = request.files['distributivo']
+
+        tmp_dir = tempfile.mkdtemp()
+        path_planilla = os.path.join(tmp_dir, 'planilla' + Path(f_planilla.filename).suffix)
+        path_matriz   = os.path.join(tmp_dir, 'matriz'   + Path(f_matriz.filename).suffix)
+        path_dist     = os.path.join(tmp_dir, 'distributivo' + Path(f_dist.filename).suffix)
+        f_planilla.save(path_planilla)
+        f_matriz.save(path_matriz)
+        f_dist.save(path_dist)
+
+        df, _sm = load_data(path_planilla, path_matriz, path_dist)
+        ced_norm = norm_ced(cedula)
+        match = df[df['Cedula'] == ced_norm]
+
+        if match.empty:
+            return jsonify({'encontrado': False})
+
+        row = match.iloc[0]
+        MA_LABELS = {0: 'Sin Derecho', 1: 'Mensualiza', 2: 'Acumula'}
+        try:
+            ma_val = int(row['MA'])
+        except (ValueError, TypeError):
+            ma_val = None
+
+        return jsonify({
+            'encontrado': True,
+            'nombre': str(row['Nombre']),
+            'estructura': str(row['Estructura']),
+            'regimen': str(row['Regimen']),
+            'clasificacion': MA_LABELS.get(ma_val, '—'),
+        })
+
+    except Exception as e:
+        return jsonify({'error': str(e), 'detalle': traceback.format_exc()}), 500
+    finally:
+        if tmp_dir:
+            import shutil
+            try: shutil.rmtree(tmp_dir, ignore_errors=True)
+            except: pass
 
 
 # ─── ENDPOINT: PARSEAR INFORME ANTERIOR ──────────────────────
