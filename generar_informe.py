@@ -30,6 +30,12 @@ NOMINA_HEADERS = [
 NOMINA_CW = [262, 749, 2583, 638, 789, 817, 595, 789, 626]
 EST_ORDER = ["1--11","55-2","55-4","56-1","56-3","57-1","58-1","58-2"]
 
+# Ancho TOTAL único para TODAS las tablas del informe (novedades wizard +
+# categorías automáticas). Igual a sum(NOMINA_CW), para que cualquier tabla,
+# sin importar cuántas columnas tenga, ocupe siempre el mismo ancho de página.
+# Decisión N2 (usuaria, 2026-06-28).
+TABLA_ANCHO_TOTAL = sum(NOMINA_CW)  # 7848 dxa (~13.84cm)
+
 # ═══════════════════════════════════════════════════════════════
 # HELPERS XML — CELDAS Y TABLAS
 # ═══════════════════════════════════════════════════════════════
@@ -276,12 +282,30 @@ def tabla_nomina(doc, df_sub, acumula_val, n_start=1):
 def tabla_novedad(doc, headers, widths, rows):
     """
     headers: lista de strings con nombres de columnas
-    widths:  lista de anchos DXA (debe sumar ~8647)
+    widths:  lista de anchos DXA por columna, calculados por nombre (vía
+             ANCHOS_CONOCIDOS en el frontend, o wids_r hardcodeado para
+             categorías automáticas). Se REESCALAN proporcionalmente para que
+             la tabla siempre sume TABLA_ANCHO_TOTAL, sin importar cuántas
+             columnas tenga (2, 5, 9, las que sean) — la proporción relativa
+             entre columnas se conserva (OBSERVACIÓN ancha, CÉDULA angosta).
+             Decisión N2 (usuaria, 2026-06-28): mismo ancho total en TODAS
+             las tablas del informe.
     rows:    lista de listas con los datos
     Si la primera columna es un número secuencial (No, Nro, #), se auto-numera.
     """
     if not rows:
         rows = [["—"] * len(headers)]
+
+    # Reescalado proporcional: si no llegan widths usables, se parte de
+    # proporciones iguales (1,1,1...) como base — el resultado sigue sumando
+    # TABLA_ANCHO_TOTAL, solo que sin preferencia de columna.
+    n = len(headers)
+    if not widths or len(widths) != n:
+        widths = [1] * n
+    suma = sum(widths)
+    escala = TABLA_ANCHO_TOTAL / suma
+    widths = [round(w * escala) for w in widths]
+    widths[-1] += TABLA_ANCHO_TOTAL - sum(widths)  # absorbe el resto del redondeo
 
     # Detectar si la primera columna es de numeración
     first_h = headers[0].strip().upper().rstrip(".") if headers else ""
