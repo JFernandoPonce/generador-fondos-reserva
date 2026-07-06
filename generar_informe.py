@@ -23,18 +23,101 @@ PT_TBL  = 7
 PT_SM   = 6
 
 NOMINA_HEADERS = [
-    "N", "Cedula", "Nombre Afiliado", "Tiene\nSolicitud",
+    "No", "Cedula", "Nombre Afiliado", "Tiene\nSolicitud",
     "Fecha de\nSolicitud", "Tiene Cargos\nPendientes?",
     "Tiene\nderecho", "ESTRUCTURA", "ACUMULA Y/O\nMENSUALIZA"
 ]
 NOMINA_CW = [262, 749, 2583, 638, 789, 817, 595, 789, 626]
 EST_ORDER = ["1--11","55-2","55-4","56-1","56-3","57-1","58-1","58-2"]
 
-# Ancho TOTAL único para TODAS las tablas del informe (novedades wizard +
-# categorías automáticas). Igual a sum(NOMINA_CW), para que cualquier tabla,
-# sin importar cuántas columnas tenga, ocupe siempre el mismo ancho de página.
-# Decisión N2 (usuaria, 2026-06-28).
-TABLA_ANCHO_TOTAL = sum(NOMINA_CW)  # 7848 dxa (~13.84cm)
+# ─── ANCHOS (Paso 1: total 15cm + columna índice fija) ───────────────────────
+# Ancho TOTAL único para TODAS las tablas del informe. >>> VARIAR ANCHO_TABLA_CM.
+ANCHO_TABLA_CM = 15.0
+TABLA_ANCHO_TOTAL = round(ANCHO_TABLA_CM * 567)  # 8505 dxa (~15cm)
+# Ancho FIJO de la columna índice (No/N): no escala, constante en toda tabla.
+ANCHO_COL_NO_CM = 0.5
+ANCHO_COL_NO = round(ANCHO_COL_NO_CM * 567)      # ~510 dxa
+
+def _proporcional(widths_base, total):
+    """Reescala una lista de anchos base (dxa) para que sumen exactamente `total`,
+    conservando la proporción relativa. Lista vacía/sin info -> reparto igual."""
+    n = len(widths_base)
+    if n == 0:
+        return []
+    ws = list(widths_base) if any(widths_base) else [1] * n
+    s = sum(ws) or 1
+    out = [round(w * total / s) for w in ws]
+    out[-1] += total - sum(out)   # absorbe el resto del redondeo
+    return out
+
+def reescalar_indice_fijo(widths_base, total=None, ancho_no=ANCHO_COL_NO):
+    """1ra columna (índice) -> `ancho_no` fijo; resto proporcional al espacio
+    restante. El total se mantiene en `total` (default TABLA_ANCHO_TOTAL)."""
+    if total is None:
+        total = TABLA_ANCHO_TOTAL
+    if len(widths_base) > 1:
+        return [ancho_no] + _proporcional(widths_base[1:], total - ancho_no)
+    return _proporcional(widths_base, total)
+
+# NOMINA_CW reescalado a 15cm con la columna N fija. Para REVERTIR las tablas de
+# 9 columnas al estado previo: usar `CW = NOMINA_CW` en tabla_nomina().
+NOMINA_CW_15 = reescalar_indice_fijo(NOMINA_CW)
+
+# ─── Paso 2: anchos por NOMBRE (cédula fija + nombres prioridad) ─────────────
+# Header canónico del índice: "No" SIN punto (decisión usuaria).
+HEADER_INDICE = "No"
+# Cédula con ancho FIJO explícito. >>> VARIAR (probar 2.1 si alcanza).
+ANCHO_COL_CEDULA_CM = 1.6
+ANCHO_COL_CEDULA = round(ANCHO_COL_CEDULA_CM * 567)
+
+# Pesos relativos por nombre de columna (proporciones; el total se reescala a
+# TABLA_ANCHO_TOTAL). NOMBRES con peso MUY alto -> se queda con el espacio más
+# amplio. >>> VARIAR el peso de NOMBRES para tantear cuánto domina.
+ANCHOS_CONOCIDOS = {
+    "no":300,"nro":300,"n":300,"#":300,                                            # índice (ancho real lo fija ANCHO_COL_NO)
+    "cédula":907,"cedula":907,"c.c.":907,"c.c. no.":907,"c.c.no.":907,             # cédula (ancho real lo fija ANCHO_COL_CEDULA)
+    "apellidos y nombres":2500,"nombre afiliado":2500,"nombres":2500,"nombre completo":2500,"apellidos":2100,  # NOMBRES prioridad alta
+    "escala":1701,"cargo":1701,"denominación":1701,"denominacion":1701,            # texto largo
+    "institución":1901,"institucion":1901,"observación":1901,"observacion":1901,
+    "rmu":794,"diferencia":900,"fecha":850,
+}
+DEFAULT_W = 1800   # columnas desconocidas
+
+def _norm_col(s):
+    return str(s).lower().strip().rstrip('.').strip()
+
+COLS_INDICE = {"no", "nro", "n", "#"}
+COLS_CEDULA = {"cédula", "cedula", "c.c.", "c.c. no.", "c.c.no.", "cc", "c.c", "cc no.", "c.c no."}
+
+def es_col_indice(nombre):  return _norm_col(nombre) in COLS_INDICE
+def es_col_cedula(nombre):  return _norm_col(nombre) in {_norm_col(c) for c in COLS_CEDULA}
+def get_ancho_auto(nombre): return ANCHOS_CONOCIDOS.get(_norm_col(nombre), DEFAULT_W)
+
+def calcular_anchos(headers, total=None):
+    """Anchos dxa por NOMBRE de columna:
+      - índice -> ANCHO_COL_NO fijo; cédula -> ANCHO_COL_CEDULA fijo (no escalan).
+      - resto -> reparte (total - fijos) proporcional al peso (ANCHOS_CONOCIDOS).
+    Suma exactamente `total` (default TABLA_ANCHO_TOTAL)."""
+    if total is None:
+        total = TABLA_ANCHO_TOTAL
+    out = [None] * len(headers)
+    var = []
+    for i, h in enumerate(headers):
+        if es_col_indice(h):   out[i] = ANCHO_COL_NO
+        elif es_col_cedula(h): out[i] = ANCHO_COL_CEDULA
+        else:                  var.append(i)
+    pool = total - sum(w for w in out if w is not None)
+    if var and pool > 0:
+        v = _proporcional([get_ancho_auto(headers[i]) for i in var], pool)
+        for k, i in enumerate(var):
+            out[i] = v[k]
+    else:
+        for i in var:
+            out[i] = 0
+    diff = total - sum(out)
+    if diff and (var or out):
+        out[(var[-1] if var else len(out) - 1)] += diff
+    return out
 
 # ═══════════════════════════════════════════════════════════════
 # HELPERS XML — CELDAS Y TABLAS
@@ -204,7 +287,7 @@ def tabla_nomina(doc, df_sub, acumula_val, n_start=1):
     en lugar de llamar write_cell (OxmlElement) por cada celda.
     Con 1200+ filas esto pasa de ~12 minutos a ~20 segundos."""
     from lxml import etree as _et
-    CW = NOMINA_CW
+    CW = NOMINA_CW_15   # Paso 1: 15cm con N fija. REVERTIR -> CW = NOMINA_CW
     W  = "http://schemas.openxmlformats.org/wordprocessingml/2006/main"
     SZ = str(int(PT_TBL * 2))
 
@@ -300,21 +383,23 @@ def tabla_novedad(doc, headers, widths, rows):
     # proporciones iguales (1,1,1...) como base — el resultado sigue sumando
     # TABLA_ANCHO_TOTAL, solo que sin preferencia de columna.
     n = len(headers)
-    if not widths or len(widths) != n:
-        widths = [1] * n
-    suma = sum(widths)
-    escala = TABLA_ANCHO_TOTAL / suma
-    widths = [round(w * escala) for w in widths]
-    widths[-1] += TABLA_ANCHO_TOTAL - sum(widths)  # absorbe el resto del redondeo
 
-    # Detectar si la primera columna es de numeración
-    first_h = headers[0].strip().upper().rstrip(".") if headers else ""
-    auto_num = first_h in ("NO", "NRO", "#", "N", "NRO.")
+    # Detectar si la primera columna es índice (numeración)
+    auto_num = bool(headers) and es_col_indice(headers[0])
+
+    # Paso 2: anchos por NOMBRE (índice y cédula fijos, resto proporcional con
+    # prioridad a NOMBRES). Se IGNORAN los `widths` que llegan del frontend.
+    widths = calcular_anchos(headers)
+
+    # Header del índice -> "No" (sin punto), consistente en todas las tablas.
+    hdr_disp = list(headers)
+    if auto_num:
+        hdr_disp[0] = HEADER_INDICE
 
     t = doc.add_table(rows=1+len(rows), cols=len(headers))
     setup_table(t, widths)
     hr = t.rows[0]
-    for i,(h,w) in enumerate(zip(headers,widths)):
+    for i,(h,w) in enumerate(zip(hdr_disp,widths)):
         write_cell(hr.cells[i], h, w, bold=True, bg="D9D9D9")
     for ri, row_data in enumerate(rows):
         dr = t.rows[1+ri]
