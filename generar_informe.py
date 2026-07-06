@@ -80,6 +80,11 @@ ANCHOS_CONOCIDOS = {
     "escala":1701,"cargo":1701,"denominación":1701,"denominacion":1701,            # texto largo
     "institución":1901,"institucion":1901,"observación":1901,"observacion":1901,
     "rmu":794,"diferencia":900,"fecha":850,
+    # EDUCA (proceso empleo docente)
+    "institución educativa":2200,"institucion educativa":2200,"especialidad":1000,"modalidad de ingreso":1300,
+    # Vinculaciones (nombramiento / contrato ocasional / traspaso bienestar social)
+    "unidad distrital":2000,"denominación del puesto":1600,"denominacion del puesto":1600,
+    "grupo ocupacional":1400,"fecha de inicio":850,"fecha de fin de contrato":950,"fecha ingreso":850,
 }
 DEFAULT_W = 1800   # columnas desconocidas
 
@@ -975,7 +980,7 @@ def generar_excel_respaldo(cfg, novedades, sA, sB, sC, sD, gran_total, output_pa
         if renuncia_extras is None:
             renuncia_extras = {}
         ren_hdrs = ["No", "CÉDULA", "APELLIDOS Y NOMBRES", "RMU", "OBSERVACIÓN"]
-        CATEGORIAS_SM = ["RENUNCIA", "NOTIFICACIÓN DE SALIDA", "FALLECIMIENTO", "JUBILACIÓN VOLUNTARIA", "JUBILACIÓN OBLIGATORIA", "JUBILACIÓN POR DISCAPACIDAD", "JUBILACIÓN POR INCAPACIDAD"]
+        CATEGORIAS_SM = ["RENUNCIA", "NOTIFICACIÓN DE SALIDA", "FALLECIMIENTO", "DESTITUCIÓN", "JUBILACIÓN VOLUNTARIA", "JUBILACIÓN OBLIGATORIA", "JUBILACIÓN POR DISCAPACIDAD", "JUBILACIÓN POR INCAPACIDAD"]
         for cat in CATEGORIAS_SM:
             cat_rows = []
             for _, row in renuncias_df.iterrows():
@@ -1298,7 +1303,7 @@ def generate(cfg_str, output_path, plantilla_path=None):
     renuncias_df = df[df["Cedula"].isin(sm_ceds)]
 
     # Agrupar por categoría asignada en el paso 4
-    CATEGORIAS_SM = ["RENUNCIA", "NOTIFICACIÓN DE SALIDA", "FALLECIMIENTO", "JUBILACIÓN VOLUNTARIA", "JUBILACIÓN OBLIGATORIA", "JUBILACIÓN POR DISCAPACIDAD", "JUBILACIÓN POR INCAPACIDAD"]
+    CATEGORIAS_SM = ["RENUNCIA", "NOTIFICACIÓN DE SALIDA", "FALLECIMIENTO", "DESTITUCIÓN", "JUBILACIÓN VOLUNTARIA", "JUBILACIÓN OBLIGATORIA", "JUBILACIÓN POR DISCAPACIDAD", "JUBILACIÓN POR INCAPACIDAD"]
     for cat in CATEGORIAS_SM:
         cat_rows = []
         for _, row in renuncias_df.iterrows():
