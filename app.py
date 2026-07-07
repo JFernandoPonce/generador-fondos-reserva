@@ -405,6 +405,40 @@ def parsear_informe():
             except: pass
 
 
+# ─── ENDPOINT: LOOKUP DE NOVEDAD (autollenar desde distributivo, solo OCUPADO) ──
+@app.route('/buscar_novedad', methods=['POST'])
+def buscar_novedad():
+    """Autollenado de una fila de novedad: busca una cédula en el distributivo
+    (SOLO puestos OCUPADO) y devuelve los campos que existen. Read-only; no toca
+    el cruce ni la clasificación. Lo que no consta queda para captura manual."""
+    tmp_dir = None
+    try:
+        cedula = (request.form.get('cedula') or '').strip()
+        if not cedula:
+            return jsonify({'error': 'Cédula vacía'}), 400
+        if 'distributivo' not in request.files:
+            return jsonify({'error': 'Falta el archivo distributivo'}), 400
+        f_dist = request.files['distributivo']
+        if not f_dist or not f_dist.filename:
+            return jsonify({'error': 'Distributivo no válido'}), 400
+
+        tmp_dir = tempfile.mkdtemp()
+        path_dist = os.path.join(tmp_dir, 'distributivo' + Path(f_dist.filename).suffix)
+        f_dist.save(path_dist)
+
+        from generar_informe import buscar_en_distributivo
+        res = buscar_en_distributivo(cedula, path_dist)
+        return jsonify(res)
+
+    except Exception as e:
+        return jsonify({'error': str(e), 'detalle': traceback.format_exc()}), 500
+    finally:
+        if tmp_dir:
+            import shutil
+            try: shutil.rmtree(tmp_dir, ignore_errors=True)
+            except: pass
+
+
 if __name__ == '__main__':
     print("=" * 55)
     print("  GENERADOR DE INFORMES - FONDOS DE RESERVA 17D08")

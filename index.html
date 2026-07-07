@@ -127,6 +127,9 @@ select option{background:var(--bg2)}
 .btn-add-row{font-size:.68rem;padding:.25rem .8rem;background:transparent;border:1px solid var(--cyan2);color:var(--cyan);border-radius:5px;cursor:pointer;transition:all .15s;font-weight:600}
 .btn-add-row:hover{background:var(--accent);box-shadow:0 0 8px #00d4ff22}
 .btn-remove-row{background:none;border:none;color:var(--red);cursor:pointer;font-size:.85rem}
+.btn-buscar-row{background:none;border:none;color:var(--cyan);cursor:pointer;font-size:.8rem;margin-right:.15rem}
+.btn-buscar-row:hover{filter:brightness(1.35)}
+.btn-buscar-row:disabled{opacity:.6;cursor:default}
 .plantillas-bar{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:.85rem}
 .btn-plantilla{font-size:.63rem;padding:.22rem .72rem;background:transparent;border:1px solid var(--border2);color:var(--txt3);border-radius:20px;cursor:pointer;transition:all .15s;font-family:'JetBrains Mono',monospace}
 .btn-plantilla:hover{border-color:var(--cyan2);color:var(--cyan);background:var(--accent)}
@@ -411,6 +414,7 @@ const PLANTILLAS=[
   {nombre:"CMYO",titulo:"INCORPORACIÓN POR GANADOR DE CONCURSO CMYO",cols:[{h:"NRO.",w:400},{h:"APELLIDOS Y NOMBRES",w:1540},{h:"CÉDULA",w:900},{h:"DENOMINACIÓN",w:700},{h:"FECHA INGRESO",w:800},{h:"OBSERVACION",w:2307}]},
   {nombre:"Sectorización",titulo:"INCORPORACIÓN POR SECTORIZACIÓN",cols:[{h:"NRO.",w:400},{h:"APELLIDOS Y NOMBRES",w:1540},{h:"CÉDULA",w:900},{h:"ESCALA",w:700},{h:"FECHA INGRESO",w:800},{h:"OBSERVACION",w:2307}]},
   {nombre:"Suspensión",titulo:"SUSPENSIÓN TEMPORAL SIN GOCE DE REMUNERACIÓN",cols:[{h:"NRO.",w:400},{h:"CÉDULA",w:900},{h:"APELLIDOS Y NOMBRES",w:1540},{h:"ESCALA",w:900},{h:"RMU",w:700},{h:"OBSERVACIÓN",w:2207}]},
+  {nombre:"Sanción Pecuniaria",titulo:"SANCIÓN PECUNIARIA",cols:[{h:"NRO.",w:400},{h:"CÉDULA",w:900},{h:"APELLIDOS Y NOMBRES",w:1540},{h:"ESCALA",w:900},{h:"RMU",w:700},{h:"OBSERVACIÓN",w:2207}]},
   {nombre:"Ingreso Director",titulo:"INGRESO SR. DIRECTOR DISTRITAL",cols:[{h:"No",w:400},{h:"C.C. No.",w:900},{h:"APELLIDOS Y NOMBRES",w:1540},{h:"CARGO",w:1900},{h:"FECHA",w:700},{h:"OBSERVACIÓN",w:2207}]},
   {nombre:"Notif. Director",titulo:"NOTIFICACIÓN SR. DIRECTOR DISTRITAL",cols:[{h:"No",w:400},{h:"C.C. No.",w:900},{h:"APELLIDOS Y NOMBRES",w:1540},{h:"CARGO",w:1900},{h:"FECHA",w:700},{h:"OBSERVACIÓN",w:2207}]},
   {nombre:"Jubilación",titulo:"JUBILACIÓN – LOSEP",cols:[{h:"No",w:400},{h:"C.C. No.",w:900},{h:"APELLIDOS Y NOMBRES",w:1540},{h:"CARGO",w:1900},{h:"FECHA",w:700},{h:"OBSERVACIÓN",w:2207}]},
@@ -511,7 +515,7 @@ function addDataRowWithValues(novId, values) {
     if(autoNum&&ci===0) cells+=`<td style="text-align:center"><input type="text" value="${n}" readonly tabindex="-1" style="text-align:center;color:var(--txt3);background:var(--bg3)"></td>`;
     else cells+=`<td><input type="text" value="${rawVal.replace(/"/g,"&quot;")}"></td>`;
   });
-  cells+=`<td><button class="btn-remove-row" onclick="removeRow(this,${novId})">✕</button></td>`;
+  cells+=`<td><button class="btn-buscar-row" onclick="autollenarFila(this,${novId})" title="Autollenar desde distributivo (OCUPADO)">🔍</button><button class="btn-remove-row" onclick="removeRow(this,${novId})">✕</button></td>`;
   tr.innerHTML=cells; tbody.appendChild(tr);
 }
 function toggleNov(id){const body=document.getElementById(`nov-body-${id}`);body.classList.toggle('open');body.previousElementSibling.querySelector('.btn-expand').textContent=body.classList.contains('open')?'▼':'▶';}
@@ -533,7 +537,7 @@ function rebuildTable(novId){
   const firstH=cols[0]?.h.trim().toUpperCase().replace('.','');const autoNum=['NO','NRO','#','N'].includes(firstH);
   let html=`<table class="nov-data-tbl"><thead><tr><th style="width:28px">#</th>`;cols.forEach(c=>html+=`<th>${c.h}</th>`);html+=`<th style="width:24px"></th></tr></thead><tbody id="dtb-${novId}">`;
   const rows=existingRows.length>0?existingRows:[Array(cols.length).fill('')];
-  rows.forEach((rd,ri)=>{html+=`<tr><td style="text-align:center;color:var(--txt3);font-size:.65rem">${ri+1}</td>`;cols.forEach((c,ci)=>{if(autoNum&&ci===0)html+=`<td style="text-align:center"><input type="text" value="${ri+1}" readonly tabindex="-1" style="text-align:center;color:var(--txt3);background:var(--bg3)"></td>`;else html+=`<td><input type="text" value="${rd[ci]||''}"></td>`;});html+=`<td><button class="btn-remove-row" onclick="removeRow(this,${novId})">✕</button></td></tr>`;});
+  rows.forEach((rd,ri)=>{html+=`<tr><td style="text-align:center;color:var(--txt3);font-size:.65rem">${ri+1}</td>`;cols.forEach((c,ci)=>{if(autoNum&&ci===0)html+=`<td style="text-align:center"><input type="text" value="${ri+1}" readonly tabindex="-1" style="text-align:center;color:var(--txt3);background:var(--bg3)"></td>`;else html+=`<td><input type="text" value="${rd[ci]||''}"></td>`;});html+=`<td><button class="btn-buscar-row" onclick="autollenarFila(this,${novId})" title="Autollenar desde distributivo (OCUPADO)">🔍</button><button class="btn-remove-row" onclick="removeRow(this,${novId})">✕</button></td></tr>`;});
   html+=`</tbody></table>`;wrap.innerHTML=html;
 }
 function addDataRow(novId){
@@ -541,13 +545,60 @@ function addDataRow(novId){
   const n=tbody.querySelectorAll('tr').length+1;const firstH=cols[0]?.h.trim().toUpperCase().replace('.','');const autoNum=['NO','NRO','#','N'].includes(firstH);
   const tr=document.createElement('tr');let cells=`<td style="text-align:center;color:var(--txt3);font-size:.65rem">${n}</td>`;
   cols.forEach((c,ci)=>{if(autoNum&&ci===0)cells+=`<td style="text-align:center"><input type="text" value="${n}" readonly tabindex="-1" style="text-align:center;color:var(--txt3);background:var(--bg3)"></td>`;else cells+=`<td><input type="text"></td>`;});
-  cells+=`<td><button class="btn-remove-row" onclick="removeRow(this,${novId})">✕</button></td>`;tr.innerHTML=cells;tbody.appendChild(tr);
+  cells+=`<td><button class="btn-buscar-row" onclick="autollenarFila(this,${novId})" title="Autollenar desde distributivo (OCUPADO)">🔍</button><button class="btn-remove-row" onclick="removeRow(this,${novId})">✕</button></td>`;tr.innerHTML=cells;tbody.appendChild(tr);
 }
 function removeRow(btn,novId){
   btn.closest('tr').remove();
   if(novId!==undefined){const tbody=document.getElementById(`dtb-${novId}`);if(!tbody)return;const cols=getCols(novId);const firstH=cols[0]?.h.trim().toUpperCase().replace('.','');const autoNum=['NO','NRO','#','N'].includes(firstH);Array.from(tbody.querySelectorAll('tr')).forEach((tr,i)=>{tr.querySelector('td').textContent=i+1;if(autoNum){const fi=tr.querySelectorAll('input')[0];if(fi&&fi.readOnly)fi.value=i+1;}});}
 }
 function getAllNovedades(){return Array.from(getNovList().querySelectorAll('.nov-item')).map(item=>{const id=parseInt(item.dataset.id);const cols=getCols(id);return{titulo:document.getElementById(`nov-tit-${id}`)?.value.trim()||'',headers:cols.map(c=>c.h),widths:cols.map(c=>c.w),filas:getDataRows(id)};}).filter(n=>n.titulo||n.filas.length>0);}
+
+// ── AUTOLLENADO DE FILA DESDE EL DISTRIBUTIVO (solo estado OCUPADO) ──
+// Mapea el NOMBRE de la columna de la novedad -> campo devuelto por /buscar_novedad.
+// Lo que NO está aquí (observación, fecha, especialidad, modalidad, validación
+// supervivencia, etc.) queda SIEMPRE para captura manual — no existe en el distributivo.
+function _normH(header){return (header||'').toLowerCase().trim().replace(/\.$/,'').trim();}
+function esColCedulaJS(header){return ['cédula','cedula','c.c.','c.c. no','c.c.no','cc','nro. cedula','nro cedula'].includes(_normH(header));}
+function campoDistributivo(header){
+  const h=_normH(header);
+  if(['no','nro','n','#'].includes(h)) return null;        // índice (auto)
+  if(esColCedulaJS(header)) return null;                    // llave (la escribe el usuario)
+  if(['apellidos y nombres','nombres','nombre afiliado','nombre completo','nombre'].includes(h)) return 'nombre';
+  if(h.includes('estructura')) return 'estructura';
+  if(h==='escala'||h.includes('grupo ocupacional')) return 'escala';
+  if(h.includes('denominación')||h.includes('denominacion')||h==='cargo') return 'denominacion';
+  if(h.includes('unidad')||h.includes('institución')||h.includes('institucion')) return 'unidad';
+  if(h.includes('rmu')) return 'rmu';
+  if(h.includes('régimen')||h.includes('regimen')) return 'regimen';
+  return null;   // observación, fecha, especialidad, modalidad, validación… -> manual
+}
+async function autollenarFila(btn, novId){
+  if(!archivoDistrib){ alert('Primero sube el Distributivo (paso 1) para poder autollenar.'); return; }
+  const tr=btn.closest('tr'); if(!tr) return;
+  const cols=getCols(novId);
+  const inputs=Array.from(tr.querySelectorAll('input'));
+  const ci=cols.findIndex(c=>esColCedulaJS(c.h));
+  if(ci<0){ alert('Esta novedad no tiene columna CÉDULA para buscar.'); return; }
+  const cedula=(inputs[ci]?.value||'').trim();
+  if(!cedula){ alert('Escribe la cédula en la fila antes de buscar.'); inputs[ci]?.focus(); return; }
+  const prev=btn.textContent; btn.textContent='⏳'; btn.disabled=true;
+  try{
+    const fd=new FormData(); fd.append('cedula',cedula); fd.append('distributivo',archivoDistrib);
+    const res=await fetch('/buscar_novedad',{method:'POST',body:fd});
+    const data=await res.json();
+    if(data.error){ btn.textContent='⚠'; btn.title=data.error; alert('Error: '+data.error); setTimeout(()=>{btn.textContent=prev;btn.title='Autollenar desde distributivo (OCUPADO)';},1800); return; }
+    if(!data.encontrado){ btn.textContent='∅'; btn.title='No consta como OCUPADO en el distributivo — captura manual'; setTimeout(()=>btn.textContent=prev,2200); return; }
+    let llenados=0;
+    cols.forEach((c,i)=>{
+      const campo=campoDistributivo(c.h);
+      if(campo && data[campo] && inputs[i] && !inputs[i].readOnly){ inputs[i].value=data[campo]; llenados++; }
+    });
+    btn.textContent=llenados>0?'✓':'∅';
+    btn.title=llenados>0?`Autollenados ${llenados} campos (lo demás es manual)`:'Encontrado pero sin campos mapeables';
+    setTimeout(()=>{btn.textContent=prev;btn.title='Autollenar desde distributivo (OCUPADO)';},1800);
+  }catch(e){ btn.textContent='⚠'; alert('Fallo de red: '+e.message); setTimeout(()=>btn.textContent=prev,1800); }
+  finally{ btn.disabled=false; }
+}
 
 // ── SIN MATCH ──
 async function cargarSinMatch(){

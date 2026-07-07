@@ -590,6 +590,83 @@ def _leer_excel(path, **kwargs):
         )
     raise ValueError(f"Formato no soportado: {ext}")
 
+# ═══════════════════════════════════════════════════════════════
+# LOOKUP DE NOVEDADES — lector AISLADO del distributivo (solo OCUPADO)
+# ═══════════════════════════════════════════════════════════════
+# Read-only. NO usa load_data, NO toca occ ni la clasificación MA. Solo lee el
+# distributivo y devuelve, por cédula, los campos que existen para autollenar una
+# fila del wizard de novedades. Universo: EXCLUSIVAMENTE ESTADO DEL PUESTO=OCUPADO
+# (mismo universo que el cruce principal). Lo que no consta -> captura manual.
+def _find_col(cols, *needles, exclude=()):
+    """Primer nombre de columna cuya versión normalizada (sin acentos, minúsculas)
+    contiene TODOS los 'needles' y NINGUNO de los 'exclude'. None si no hay."""
+    import unicodedata
+    def norm(s):
+        s = unicodedata.normalize("NFKD", str(s)).encode("ascii", "ignore").decode().lower()
+        return " ".join(s.split())
+    needles = [norm(n) for n in needles]
+    exclude = [norm(e) for e in exclude]
+    for c in cols:
+        nc = norm(c)
+        if all(nd in nc for nd in needles) and not any(ex in nc for ex in exclude):
+            return c
+    return None
+
+def buscar_en_distributivo(cedula, pd_path):
+    """Busca una cédula en el distributivo SOLO entre puestos OCUPADO y devuelve
+    los campos autollenables. No modifica nada; aislado del motor de clasificación."""
+    ced = norm_ced(cedula)
+    df = _leer_excel(pd_path, header=0, dtype={"ESTRUCTURA PROGRAMÁTICA": str})
+    df.columns = [str(c).strip() for c in df.columns]
+
+    c_ced    = _find_col(df.columns, "numero", "identificacion", exclude=("codigo",)) or _find_col(df.columns, "identificacion", exclude=("codigo","tipo"))
+    c_est    = _find_col(df.columns, "estado", "puesto")
+    c_nom    = _find_col(df.columns, "nombres")
+    c_estr   = _find_col(df.columns, "estructura", "programatica")
+    c_esc    = _find_col(df.columns, "escala", "ocupacional", exclude=("codigo",))
+    c_den    = _find_col(df.columns, "denominacion", "puesto", exclude=("codigo",))
+    c_uni    = _find_col(df.columns, "unidad", "organica", exclude=("codigo",))
+    c_rmu    = _find_col(df.columns, "rmu", "puesto", exclude=("codigo",))
+    c_reg    = _find_col(df.columns, "regimen", "laboral", exclude=("codigo",))
+    c_codreg = _find_col(df.columns, "codigo", "regimen")
+
+    if c_ced is None or c_est is None:
+        return {"encontrado": False,
+                "error": "El distributivo no tiene las columnas esperadas (identificación / estado del puesto)."}
+
+    def val(row, c):
+        if not c: return ""
+        v = row.get(c)
+        if v is None: return ""
+        s = str(v).strip()
+        return "" if s.lower() in ("nan", "nat", "none") else s
+
+    for _, row in df.iterrows():
+        if str(row.get(c_est, "")).upper().strip() != "OCUPADO":
+            continue
+        if norm_ced(row.get(c_ced, "")) != ced:
+            continue
+        reg = ""
+        if c_codreg and pd.notna(row.get(c_codreg)):
+            raw = str(row[c_codreg])
+            cod = int(float(raw)) if raw.replace('.', '', 1).isdigit() else 0
+            reg = {1: "LOSEP", 2: "CT", 3: "LOEI"}.get(cod, "")
+        if not reg and c_reg:
+            reg = val(row, c_reg)
+        estr_raw = val(row, c_estr)
+        return {
+            "encontrado":   True,
+            "nombre":       val(row, c_nom),
+            "estructura":   decode_est(estr_raw) if estr_raw else "",
+            "regimen":      reg,
+            "escala":       val(row, c_esc),
+            "denominacion": val(row, c_den),
+            "unidad":       val(row, c_uni),
+            "rmu":          val(row, c_rmu),
+        }
+    return {"encontrado": False}
+
+
 def load_data(pp_path, pm_path, pd_path):
     """
     Nueva lógica de clasificación con 3 fuentes:
